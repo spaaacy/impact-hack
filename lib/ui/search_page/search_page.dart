@@ -37,8 +37,8 @@ class SearchPage extends StatelessWidget {
                   elevation: 4.0,
                 ),
                 suggestionsCallback: (input) async {
-                  final results =
-                      await _placeService.fetchSuggestions(input: input, lang: lang, sessionToken: state.sessionToken);
+                  final results = await _placeService.fetchSuggestions(
+                      input: input, lang: lang);
                   return results.take(8);
                 },
                 itemBuilder: (context, suggestion) {
@@ -64,7 +64,8 @@ class SearchPage extends StatelessWidget {
                               state.searchController.clear();
                             })
                         : null,
-                    border: const OutlineInputBorder(borderSide: BorderSide.none),
+                    border:
+                        const OutlineInputBorder(borderSide: BorderSide.none),
                     hintText: "Where do you wish to go?",
                     filled: true,
                     fillColor: Colors.white,

@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:impact_hack/util/constants.dart';
-import 'package:latlong2/latlong.dart';
 
 import '../data/model/suggestion.dart';
 
@@ -10,27 +8,30 @@ class BusinessService {
   final client = Client();
 
   Future<List<Suggestion>> fetchSuggestions(
-      {required String input, LatLng? currentLocation, required String lang, required String sessionToken}) async {
+      {required String input, required String lang}) async {
     if (input.isEmpty) {
       return [];
     }
 
-    currentLocation ??= defaultLatLng;
-
     final request =
-        "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$input&location=${currentLocation.latitude}%2C${currentLocation.longitude}&types=establishment&language=$lang&components=country:my&key=$mapsApiKey&sessiontoken=$sessionToken";
-    final response = await client.get(Uri.parse(request));
+        "https://local-business-data.p.rapidapi.com/autocomplete?query=$input&region=ms&language=$lang";
+    final response = await client.get(Uri.parse(request), headers: {
+      'X-RapidAPI-Key': 'a368014d7emsh42b952724a1738dp199cbbjsnd23fb0d00942',
+      'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
+    });
 
     if (response.statusCode == 200) {
       final result = json.decode(response.body);
 
       if (result['status'] == 'OK') {
-        return result['predictions'].map<Suggestion>((prediction) {
-          return Suggestion(placeId: prediction['place_id'], description: prediction['description']);
+        return result['data'].map<Suggestion>((prediction) {
+          return Suggestion(
+              googleId: prediction['google_id'],
+              description: prediction['description']);
         }).toList();
       }
 
-      if (result['status'] == 'ZERO_RESULTS') {
+      if (result['data'].length < 1) {
         return [];
       }
 
@@ -39,6 +40,4 @@ class BusinessService {
       throw Exception('Failed to fetch suggestion');
     }
   }
-
-
 }
