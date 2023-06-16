@@ -5,6 +5,9 @@ import 'package:impact_hack/ui/search_page/search_page.dart';
 import 'package:impact_hack/ui/search_page/search_page_state.dart';
 import 'package:provider/provider.dart';
 
+import '../model/chatgpt_request.dart';
+import '../services/gpt_service.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -22,7 +25,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: ChangeNotifierProvider(create: (context) => SearchPageState(context), child: SearchPage(),),
-      home: ChangeNotifierProvider(create: (context) => BusinessDetailState(context), child: const BusinessDetail(),),
+      home: ChangeNotifierProvider(
+        create: (context) => BusinessDetailState(context),
+        child: const BusinessDetail(),
+      ),
     );
   }
 }
