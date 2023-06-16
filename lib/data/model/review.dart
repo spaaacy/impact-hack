@@ -17,12 +17,22 @@ class Review {
 
   @override
   String toString() {
-    return """
-      Review:
-      -Rating: $rating
-      -Description: $text
-      $ratingBreakdown
-      $reviewForm
-    """;
+    String output = "Review:\n"
+        "-Rating: $rating\n"
+        "-Description: $text";
+
+    if (ratingBreakdown != null) {
+      ratingBreakdown!.forEach((key, value) {
+        output = '$output\n$key: $value';
+      });
+    }
+
+    if (reviewForm != null) {
+      reviewForm!.forEach((key, value) {
+        output = '$output\n$key: $value';
+      });
+    }
+
+    return output;
   }
 }

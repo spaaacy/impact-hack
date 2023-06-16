@@ -23,19 +23,20 @@ class BusinessDetails {
   // TODO: Enumerate about details
   @override
   String toString() {
-    return   """The information given below is a restaurant's details and it's details:
+    String output = "The information given below is a restaurant's details and it's details:\n\n"
+        "Business Name: $name\n"
+        "Overall Rating: $rating/5\n"
+        "Total Reviews: $reviewCount\n";
 
-Business Name: "$name"
+    if (aboutDetails != null) {
+      aboutDetails!.forEach((key, value) {
+        output = '$output\n$key: $value';
+      });
+    }
 
-Overall Rating: $rating/5
+    output = "$output\n\nThere are multiple reviews. Based on these reviews, you should provide professional feedback.";
 
-Total Reviews: $reviewCount
-
-$aboutDetails
-
-There are multiple reviews. Based on these reviews, you should provide professional feedback. 
-
-""";
+    return output;
   }
 
 }

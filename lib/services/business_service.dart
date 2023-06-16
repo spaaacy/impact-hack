@@ -53,12 +53,13 @@ class BusinessService {
 
       if (result['status'] == 'OK') {
         final data = result['data'][0];
-        return BusinessDetails(
+        final details = BusinessDetails(
             businessId: data['business_id'],
             name: data['name'],
             reviewCount: data["review_count"],
             rating: data["rating"],
             aboutDetails: data['about']['details']);
+        return details;
       }
 
       throw Exception(result['error_message']);
@@ -74,7 +75,7 @@ class BusinessService {
         headers: {'X-RapidAPI-Key': rapidApiKey, 'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'});
 
     if (response.statusCode == 200) {
-      final result = json.decode(response.body);
+      final result = json.decode(utf8.decode(response.bodyBytes));
 
       if (result['status'] == 'OK') {
         final reviews = result['data'].map<Review>((review) {
