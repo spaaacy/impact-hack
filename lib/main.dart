@@ -24,13 +24,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: ChangeNotifierProvider(
-          create: (context) => SearchPageState(context), child: SearchPage()),
+      // home: ChangeNotifierProvider(
+      //     create: (context) => SearchPageState(context), child: SearchPage()),
       // home: ChangeNotifierProvider(
       //     create: (context) => BusinessDetailState(context, "test"),
       //     child: BusinessDetail()),
-      // home: ChangeNotifierProvider(
-      //     create: (context) => HomePageState(context), child: HomePage()),
+      home: ChangeNotifierProvider(
+          create: (context) => HomePageState(context), child: HomePage()),
     );
   }
 }
