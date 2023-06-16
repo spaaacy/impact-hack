@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:impact_hack/data/model/business_details.dart';
+import 'package:impact_hack/data/model/chatgpt_response.dart';
 import 'package:impact_hack/services/business_service.dart';
 
 import '../../data/model/chatgpt_request.dart';
+import '../../data/model/review.dart';
 import '../../services/gpt_service.dart';
 
 class BusinessDetailPageState extends ChangeNotifier {
   final BuildContext context;
   final OpenAIService openAiService;
+  Future<ChatCompletionResponse?>? gptResponse;
   String? businessAnalysis;
   final _businessService = BusinessService();
 
@@ -21,12 +24,11 @@ class BusinessDetailPageState extends ChangeNotifier {
 
   final String googleId;
 
-  // final BusinessDetails businessDetails;
-
   Future<void> generateAnalysis() async {
     await _businessService.fetchBusinessDetails(businessId: googleId, lang: 'en').then((details) {
-      // fetchBusinessDescription(businessDetails: details)
-      print(details);
+      _businessService
+          .fetchBusinessReviews(businessId: googleId, lang: 'en')
+          .then((reviews) => fetchBusinessDescription(businessDetails: details, businessReviews: reviews));
     });
   }
 
@@ -102,23 +104,31 @@ Review 4:
 there are multiple reviews. Based on these reviews, you should provide professional feedback. 
 """;
 
-  Future<String> fetchBusinessDescription({BusinessDetails? businessDetails}) async {
-    // TODO: Make non nullable
+  Future<void> fetchBusinessDescription(
+      {required BusinessDetails businessDetails, required List<Review> businessReviews}) async {
+    final compiledDetails = """
+        $businessDetails
+        
+        $businessReviews
+      """;
+
     final messages = [
-      ChatMessage(role: 'system', content: systemContext), // businessDetails),
+      ChatMessage(role: 'system', content: compiledDetails),
       ChatMessage(
           role: 'user',
           content:
-              "can you analysize and summarise how the restaurant is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. "),
+              "can you analyze and summarise how the restaurant is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. "),
     ];
 
     const temperature = 1.0;
 
-    return openAiService.sendChatCompletionRequest(messages, temperature).then((response) {
+    gptResponse = openAiService.sendChatCompletionRequest(messages, temperature).then((response) {
       businessAnalysis = response.choices.first.message.content;
-      return businessAnalysis!;
+      notifyListeners();
     }).catchError((error) {
-      return 'Failed to fetch description';
+      businessAnalysis = 'Failed to fetch description';
+      notifyListeners();
     });
+    notifyListeners();
   }
 }

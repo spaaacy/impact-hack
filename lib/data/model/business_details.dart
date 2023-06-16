@@ -1,10 +1,10 @@
 class BusinessDetails {
-  final String businessId;
-  final String name;
-  final int reviewCount;
-  final double rating;
-  final Map reviewsPerRating;
-  final Map aboutDetails;
+  final String? businessId;
+  final String? name;
+  final int? reviewCount;
+  final double? rating;
+  final Map? reviewsPerRating;
+  final Map? aboutDetails;
 
   // TODO: Add price
   // TODO: Add type
