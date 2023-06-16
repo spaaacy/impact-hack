@@ -8,15 +8,13 @@ import '../../services/business_service.dart';
 import '../../services/gpt_service.dart';
 
 class ComparisonPageState extends ChangeNotifier {
-
   final BuildContext context;
   final String googleId;
+  final OpenAIService openAiService = OpenAIService();
 
-  final OpenAIService openAiService;
   Future<ChatCompletionResponse?>? gptResponse;
 
   final _businessService = BusinessService();
-
 
   String previousBusinessAnalysis;
   BusinessDetails previousBusinessDetails;
@@ -26,16 +24,15 @@ class ComparisonPageState extends ChangeNotifier {
   BusinessDetails? currentBusinessDetails;
   List<Review>? currentBusinessReviews;
 
-  ComparisonPageState(this.context, this.googleId, this.previousBusinessAnalysis, this.previousBusinessDetails, this.previousBusinessReviews) : openAiService = OpenAIService() {
+  ComparisonPageState(this.context, this.googleId, this.previousBusinessAnalysis, this.previousBusinessDetails,
+      this.previousBusinessReviews) {
     generateAnalysis();
   }
 
   Future<void> generateAnalysis() async {
     await _businessService.fetchBusinessDetails(businessId: googleId, lang: 'en').then((details) {
       currentBusinessDetails = details;
-      _businessService
-          .fetchBusinessReviews(businessId: googleId, lang: 'en')
-          .then((reviews) {
+      _businessService.fetchBusinessReviews(businessId: googleId, lang: 'en').then((reviews) {
         previousBusinessReviews = reviews;
         fetchBusinessAnalysis(businessDetails: details, businessReviews: reviews);
       });
@@ -55,7 +52,7 @@ class ComparisonPageState extends ChangeNotifier {
       ChatMessage(
           role: 'user',
           content:
-          "can you analyze and summarise how the restaurant is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. "),
+              "can you analyze and summarise how the restaurant is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. "),
     ];
 
     const temperature = 1.0;
@@ -69,5 +66,4 @@ class ComparisonPageState extends ChangeNotifier {
     });
     notifyListeners();
   }
-
 }

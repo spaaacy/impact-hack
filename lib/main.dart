@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:impact_hack/ui/comparison_page/comparison_page.dart';
+import 'package:impact_hack/ui/comparison_page/comparison_page_state.dart';
 import 'package:impact_hack/ui/home_page/home_page.dart';
 import 'package:impact_hack/ui/home_page/home_page_state.dart';
 import 'package:provider/provider.dart';
