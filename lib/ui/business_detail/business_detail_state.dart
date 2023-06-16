@@ -12,6 +12,8 @@ class BusinessDetailState extends ChangeNotifier {
   BusinessDetailState(this.context, this.googleId)
       : openAiService = OpenAIService();
 
+  final searchController = TextEditingController();
+
   final String googleId;
 
   final String systemContext =
