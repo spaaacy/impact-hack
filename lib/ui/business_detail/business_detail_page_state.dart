@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:impact_hack/data/model/business_details.dart';
 import 'package:impact_hack/services/business_service.dart';
-import 'package:impact_hack/util/constants.dart';
 
-import '../../model/chatgpt_request.dart';
+import '../../data/model/chatgpt_request.dart';
 import '../../services/gpt_service.dart';
 
-class BusinessDetailState extends ChangeNotifier {
+class BusinessDetailPageState extends ChangeNotifier {
   final BuildContext context;
   final OpenAIService openAiService;
   String? businessAnalysis;
@@ -14,26 +13,24 @@ class BusinessDetailState extends ChangeNotifier {
 
   String description = 'Loading...';
 
-  BusinessDetailState(this.context, this.googleId)
-      : openAiService = OpenAIService() {
+  BusinessDetailPageState(this.context, this.googleId) : openAiService = OpenAIService() {
     generateAnalysis();
   }
 
   final searchController = TextEditingController();
 
   final String googleId;
+
   // final BusinessDetails businessDetails;
 
   Future<void> generateAnalysis() async {
-    await _businessService
-        .fetchBusinessDetails(businessId: googleId, lang: 'en')
-        .then((value) => {
-              // fetchBusinessDescription();
-            });
+    await _businessService.fetchBusinessDetails(businessId: googleId, lang: 'en').then((details) {
+      // fetchBusinessDescription(businessDetails: details)
+      print(details);
+    });
   }
 
-  final String systemContext =
-      """The information given below is a restaurant's details and it's details:
+  final String systemContext = """The information given below is a restaurant's details and it's details:
 
 Business Name: "Suki-Ya @ Pavilion KL"
 
@@ -105,9 +102,10 @@ Review 4:
 there are multiple reviews. Based on these reviews, you should provide professional feedback. 
 """;
 
-  Future<String> fetchBusinessDescription(String businessDetails) async {
+  Future<String> fetchBusinessDescription({BusinessDetails? businessDetails}) async {
+    // TODO: Make non nullable
     final messages = [
-      ChatMessage(role: 'system', content: businessDetails),
+      ChatMessage(role: 'system', content: systemContext), // businessDetails),
       ChatMessage(
           role: 'user',
           content:
@@ -116,9 +114,7 @@ there are multiple reviews. Based on these reviews, you should provide professio
 
     const temperature = 1.0;
 
-    return openAiService
-        .sendChatCompletionRequest(messages, temperature)
-        .then((response) {
+    return openAiService.sendChatCompletionRequest(messages, temperature).then((response) {
       businessAnalysis = response.choices.first.message.content;
       return businessAnalysis!;
     }).catchError((error) {

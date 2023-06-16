@@ -7,15 +7,15 @@ import '../../services/business_service.dart';
 import '../../util/helpers.dart';
 import '../comparison_page/comparison_page.dart';
 import '../comparison_page/comparison_page_state.dart';
-import 'business_detail_state.dart';
+import 'business_detail_page_state.dart';
 
-class BusinessDetail extends StatelessWidget {
-  const BusinessDetail({Key? key}) : super(key: key);
+class BusinessDetailPage extends StatelessWidget {
+  const BusinessDetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final state = context.read<BusinessDetailState>();
-    final businessDetailState = Provider.of<BusinessDetailState>(context);
+    final state = context.read<BusinessDetailPageState>();
+    final businessDetailState = Provider.of<BusinessDetailPageState>(context);
     final descriptionFuture = businessDetailState.fetchBusinessDescription();
 
     return Scaffold(

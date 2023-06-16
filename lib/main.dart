@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:impact_hack/ui/business_detail/business_detail.dart';
-import 'package:impact_hack/ui/business_detail/business_detail_state.dart';
+import 'package:impact_hack/ui/business_detail/business_detail_page.dart';
+import 'package:impact_hack/ui/business_detail/business_detail_page_state.dart';
 import 'package:impact_hack/ui/comparison_page/comparison_page.dart';
 import 'package:impact_hack/ui/comparison_page/comparison_page_state.dart';
 import 'package:impact_hack/ui/search_page/search_page.dart';

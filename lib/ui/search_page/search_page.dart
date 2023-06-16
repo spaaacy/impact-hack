@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 
 import '../../services/business_service.dart';
 import '../../util/helpers.dart';
-import '../business_detail/business_detail.dart';
-import '../business_detail/business_detail_state.dart';
+import '../business_detail/business_detail_page.dart';
+import '../business_detail/business_detail_page_state.dart';
 
 class SearchPage extends StatelessWidget {
   final _businessService = BusinessService();
@@ -55,7 +55,7 @@ class SearchPage extends StatelessWidget {
                 onSuggestionSelected: (suggestion) async {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) =>
-                        ChangeNotifierProvider(create: (context) => BusinessDetailState(context, suggestion.googleId), child: const BusinessDetail())
+                        ChangeNotifierProvider(create: (context) => BusinessDetailPageState(context, suggestion.googleId), child: const BusinessDetailPage())
                     )
                   );
                 },
