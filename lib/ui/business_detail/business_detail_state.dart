@@ -9,7 +9,10 @@ class BusinessDetailState extends ChangeNotifier {
   final OpenAIService openAiService;
   String description = 'Loading...';
 
-  BusinessDetailState(this.context) : openAiService = OpenAIService();
+
+  BusinessDetailState(this.context, this.googleId) : openAiService = OpenAIService();
+
+  final String googleId;
 
   Future<String> fetchBusinessDescription() async {
     // final messages = [

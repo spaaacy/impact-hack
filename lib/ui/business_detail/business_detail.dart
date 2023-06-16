@@ -8,10 +8,12 @@ class BusinessDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.read<BusinessDetailState>();
     final businessDetailState = Provider.of<BusinessDetailState>(context);
     final descriptionFuture = businessDetailState.fetchBusinessDescription();
 
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -30,7 +32,7 @@ class BusinessDetail extends StatelessWidget {
                     Row(
                       children: [
                         SelectableText(
-                          'Business Name',
+                          'Business Name - ${state.googleId}',
                           style: Theme.of(context).textTheme.headlineLarge,
                         ),
                         const Spacer(),
