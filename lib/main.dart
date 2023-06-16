@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:impact_hack/ui/business_detail/business_detail.dart';
 import 'package:impact_hack/ui/business_detail/business_detail_state.dart';
+import 'package:impact_hack/ui/home_page/home_page.dart';
+import 'package:impact_hack/ui/home_page/home_page_state.dart';
 import 'package:impact_hack/ui/search_page/search_page.dart';
 import 'package:impact_hack/ui/search_page/search_page_state.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +29,8 @@ class MyApp extends StatelessWidget {
       // home: ChangeNotifierProvider(
       //     create: (context) => BusinessDetailState(context, "test"),
       //     child: BusinessDetail()),
+      // home: ChangeNotifierProvider(
+      //     create: (context) => HomePageState(context), child: HomePage()),
     );
   }
 }
