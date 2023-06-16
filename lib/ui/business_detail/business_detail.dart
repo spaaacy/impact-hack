@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:impact_hack/util/constants.dart';
 import 'package:provider/provider.dart';
 
+import '../comparison_page/comparison_page.dart';
+import '../comparison_page/comparison_page_state.dart';
 import 'business_detail_state.dart';
 
 class BusinessDetail extends StatelessWidget {
@@ -13,7 +16,7 @@ class BusinessDetail extends StatelessWidget {
     final descriptionFuture = businessDetailState.fetchBusinessDescription();
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: const  SelectableText('Analysis')),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -40,7 +43,15 @@ class BusinessDetail extends StatelessWidget {
                         MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return ChangeNotifierProvider(create: (context) => ComparisonPageState(context), child: ComparisonPage());
+                                  }
+                                )
+                              );
+                            },
                             child: Container(decoration: const BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.all(Radius.circular(4.0))
@@ -63,7 +74,7 @@ class BusinessDetail extends StatelessWidget {
                         children: [
                           SelectableText("Analysis", style: Theme.of(context).textTheme.titleLarge),
                           const SizedBox(height: 8.0),
-                          SelectableText(description, style: Theme.of(context).textTheme.bodyLarge),
+                          SelectableText(loremImpsum, style: Theme.of(context).textTheme.bodyLarge),
                         ],
                       ),
                     )

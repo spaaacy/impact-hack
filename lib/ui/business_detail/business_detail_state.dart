@@ -9,7 +9,6 @@ class BusinessDetailState extends ChangeNotifier {
   final OpenAIService openAiService;
   String description = 'Loading...';
 
-
   BusinessDetailState(this.context, this.googleId) : openAiService = OpenAIService();
 
   final String googleId;
