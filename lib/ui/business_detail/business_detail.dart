@@ -84,7 +84,7 @@ class BusinessDetail extends StatelessWidget {
                                           MaterialPageRoute(
                                               builder: (context) {
                                                 return ChangeNotifierProvider(
-                                                    create: (context) => ComparisonPageState(context, suggestion.googleId), child: ComparisonPage());
+                                                    create: (context) => ComparisonPageState(context, suggestion.googleId, state.businessAnalysis!), child: ComparisonPage());
                                               }
                                           )
                                       );
@@ -141,7 +141,7 @@ class BusinessDetail extends StatelessWidget {
                               .textTheme
                               .titleLarge),
                           const SizedBox(height: 8.0),
-                          SelectableText(loremImpsum, style: Theme
+                          SelectableText(description, style: Theme
                               .of(context)
                               .textTheme
                               .bodyLarge),

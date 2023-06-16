@@ -7,6 +7,8 @@ import '../../services/gpt_service.dart';
 class BusinessDetailState extends ChangeNotifier {
   final BuildContext context;
   final OpenAIService openAiService;
+  String? businessAnalysis;
+
   String description = 'Loading...';
 
   BusinessDetailState(this.context, this.googleId)
@@ -103,12 +105,10 @@ there are multiple reviews. Based on these reviews, you should provide professio
     return openAiService
         .sendChatCompletionRequest(messages, temperature)
         .then((response) {
-      final completionMessage = response.choices.first.message.content;
-      return completionMessage;
+      businessAnalysis = response.choices.first.message.content;
+      return businessAnalysis!;
     }).catchError((error) {
       return 'Failed to fetch description';
     });
-
-    //return loremImpsum;
   }
 }

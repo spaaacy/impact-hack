@@ -33,7 +33,7 @@ class ComparisonPage extends StatelessWidget {
                       children: [
                         SelectableText("Business 1", style: Theme.of(context).textTheme.titleLarge),
                         const SizedBox(height: 8.0),
-                        SelectableText(loremImpsum, style: Theme.of(context).textTheme.bodyLarge),
+                        SelectableText(state.previousBusinessAnalysis, style: Theme.of(context).textTheme.bodyLarge),
                       ],
                     ),
                   ),
