@@ -17,7 +17,7 @@ class ComparisonPage extends StatelessWidget {
           padding: const EdgeInsets.all(24.0),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             SelectableText(
-              'Comparison',
+              'Comparison ${state.googleId}',
               style: Theme.of(context).textTheme.headlineLarge,
             ),
             const SizedBox(height: 12.0),

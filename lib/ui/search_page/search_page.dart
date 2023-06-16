@@ -9,7 +9,7 @@ import '../business_detail/business_detail.dart';
 import '../business_detail/business_detail_state.dart';
 
 class SearchPage extends StatelessWidget {
-  final _placeService = BusinessService();
+  final _businessService = BusinessService();
 
   SearchPage({Key? key}) : super(key: key);
 
@@ -39,7 +39,7 @@ class SearchPage extends StatelessWidget {
                   elevation: 4.0,
                 ),
                 suggestionsCallback: (input) async {
-                  final results = await _placeService.fetchSuggestions(
+                  final results = await _businessService.fetchSuggestions(
                       input: input, lang: lang);
                   return results.take(8);
                 },

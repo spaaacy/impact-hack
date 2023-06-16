@@ -8,6 +8,7 @@ class BusinessDetailState extends ChangeNotifier {
   final BuildContext context;
   final OpenAIService openAiService;
   String description = 'Loading...';
+  final searchController = TextEditingController();
 
   BusinessDetailState(this.context, this.googleId) : openAiService = OpenAIService();
 
