@@ -1,11 +1,11 @@
 class Suggestion {
-  final String placeId;
+  final String googleId;
   final String description;
 
-  Suggestion({this.placeId = "", this.description = ""});
+  Suggestion({this.googleId = "", this.description = ""});
 
   @override
   String toString() {
-    return 'Suggestion(description: $description, placeId: $placeId)';
+    return 'Suggestion(description: $description, googleId: $googleId)';
   }
 }
