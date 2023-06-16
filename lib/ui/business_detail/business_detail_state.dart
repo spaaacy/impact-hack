@@ -13,7 +13,8 @@ class BusinessDetailState extends ChangeNotifier {
       : openAiService = OpenAIService();
 
   final String googleId;
-  final String reviewData =
+
+  final String systemContext =
       """The information given below is a restaurant's details and it's details:
 
 Business Name: "Suki-Ya @ Pavilion KL"
@@ -88,13 +89,11 @@ there are multiple reviews. Based on these reviews, you should provide professio
 
   Future<String> fetchBusinessDescription() async {
     final messages = [
-      ChatMessage(role: 'system', content: reviewData),
+      ChatMessage(role: 'system', content: systemContext),
       ChatMessage(
           role: 'user',
           content:
               "can you analysize and summarise how the restaurant is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. "),
-      // ChatMessage(role: "system", content: "content"),
-      // ChatMessage(role: "user", content: "")
     ];
 
     const temperature = 1.0;
