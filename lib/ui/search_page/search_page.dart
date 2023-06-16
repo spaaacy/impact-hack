@@ -5,11 +5,11 @@ import 'package:provider/provider.dart';
 
 import '../../services/business_service.dart';
 import '../../util/helpers.dart';
-import '../business_detail/business_detail.dart';
-import '../business_detail/business_detail_state.dart';
+import '../business_detail/business_detail_page.dart';
+import '../business_detail/business_detail_page_state.dart';
 
 class SearchPage extends StatelessWidget {
-  final _placeService = BusinessService();
+  final _businessService = BusinessService();
 
   SearchPage({Key? key}) : super(key: key);
 
@@ -82,16 +82,14 @@ class SearchPage extends StatelessWidget {
                         elevation: 4.0,
                       ),
                       suggestionsCallback: (input) async {
-                        final results = await _placeService.fetchSuggestions(
-                            input: input, lang: lang);
+                        final results = await _businessService.fetchSuggestions(input: input, lang: lang);
                         return results.take(8);
                       },
                       itemBuilder: (context, suggestion) {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            trimDescription(suggestion.description)
-                                .capitalize(),
+                            trimDescription(suggestion.description).capitalize(),
                             style: const TextStyle(fontSize: 16.0),
                           ),
                         );
@@ -99,9 +97,8 @@ class SearchPage extends StatelessWidget {
                       onSuggestionSelected: (suggestion) async {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => ChangeNotifierProvider(
-                                create: (context) => BusinessDetailState(
-                                    context, suggestion.googleId),
-                                child: const BusinessDetail())));
+                                create: (context) => BusinessDetailPageState(context, suggestion.googleId),
+                                child: const BusinessDetailPage())));
                       },
                       textFieldConfiguration: TextFieldConfiguration(
                         controller: state.searchController,
@@ -116,9 +113,7 @@ class SearchPage extends StatelessWidget {
                                   })
                               : null,
                           border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12.0)),
-                              borderSide: BorderSide.none),
+                              borderRadius: BorderRadius.all(Radius.circular(12.0)), borderSide: BorderSide.none),
                           hintText: "Where is your location?",
                           filled: true,
                           fillColor: Colors.white,
