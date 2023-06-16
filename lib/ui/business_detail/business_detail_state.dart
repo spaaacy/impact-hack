@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:impact_hack/data/model/business_details.dart';
+import 'package:impact_hack/services/business_service.dart';
 import 'package:impact_hack/util/constants.dart';
 
 import '../../model/chatgpt_request.dart';
@@ -8,15 +10,27 @@ class BusinessDetailState extends ChangeNotifier {
   final BuildContext context;
   final OpenAIService openAiService;
   String? businessAnalysis;
+  final _businessService = BusinessService();
 
   String description = 'Loading...';
 
   BusinessDetailState(this.context, this.googleId)
-      : openAiService = OpenAIService();
+      : openAiService = OpenAIService() {
+    generateAnalysis();
+  }
 
   final searchController = TextEditingController();
 
   final String googleId;
+  // final BusinessDetails businessDetails;
+
+  Future<void> generateAnalysis() async {
+    await _businessService
+        .fetchBusinessDetails(businessId: googleId, lang: 'en')
+        .then((value) => {
+              // fetchBusinessDescription();
+            });
+  }
 
   final String systemContext =
       """The information given below is a restaurant's details and it's details:
@@ -91,9 +105,9 @@ Review 4:
 there are multiple reviews. Based on these reviews, you should provide professional feedback. 
 """;
 
-  Future<String> fetchBusinessDescription() async {
+  Future<String> fetchBusinessDescription(String businessDetails) async {
     final messages = [
-      ChatMessage(role: 'system', content: systemContext),
+      ChatMessage(role: 'system', content: businessDetails),
       ChatMessage(
           role: 'user',
           content:
