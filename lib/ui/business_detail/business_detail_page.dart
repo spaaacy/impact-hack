@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:impact_hack/ui/home_page/home_page.dart';
+import 'package:impact_hack/ui/home_page/home_page_state.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/model/chatgpt_response.dart';
@@ -77,20 +79,24 @@ class BusinessDetailPage extends StatelessWidget {
                                                 );
                                               },
                                               onSuggestionSelected: (suggestion) async {
-                                                Navigator.of(context)
-                                                    .pushReplacement(MaterialPageRoute(builder: (context) {
-                                                  return ChangeNotifierProvider(
-                                                      create: (context) {
-                                                        ComparisonPageState(
-                                                          context,
-                                                          suggestion.googleId,
-                                                          state.businessAnalysis!,
-                                                          state.businessDetails!,
-                                                          state.businessReviews!,
-                                                        );
-                                                      },
-                                                      child: const ComparisonPage());
-                                                }));
+
+                                                  Navigator.of(state.context)
+                                                      .pushReplacement(
+                                                      MaterialPageRoute(builder: (context) =>
+                                                          ChangeNotifierProvider(
+                                                              create: (context) {
+                                                                return ComparisonPageState(
+                                                                  context,
+                                                                  suggestion.googleId,
+                                                                  state.businessAnalysis!,
+                                                                  state.businessDetails!,
+                                                                  state.businessReviews!,
+                                                                );
+                                                              },
+                                                              child: const ComparisonPage())
+                                                      )
+
+                                                  );
                                               },
                                               textFieldConfiguration: TextFieldConfiguration(
                                                 controller: state.searchController,

@@ -21,19 +21,6 @@ class HomePage extends StatelessWidget {
                 children: [
                   const Text("PLACEHOLDER-NAME"),
                   const SizedBox(width: 16.0),
-                  // ElevatedButton.icon(
-                  //   onPressed: () {
-                  //     // Perform search action
-                  //   },
-                  //   icon: Icon(Icons.search),
-                  //   label: Text("Search"),
-                  //   style: ElevatedButton.styleFrom(
-                  //     padding: EdgeInsetsDirectional.fromSTEB(14, 20, 60, 20),
-                  //     backgroundColor: const Color.fromARGB(255, 129, 27, 27),
-                  //     foregroundColor: Colors.white,
-                  //     textStyle: TextStyle(fontSize: 16),
-                  //   ),
-                  // ),
 
                   TextButton(
                     onPressed: () {
