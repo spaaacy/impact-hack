@@ -1,25 +1,38 @@
 import 'package:flutter/cupertino.dart';
-import 'package:impact_hack/util/constants.dart';
+import 'package:impact_hack/data/model/business_details.dart';
+import 'package:impact_hack/data/model/chatgpt_response.dart';
+import 'package:impact_hack/services/business_service.dart';
 
-import '../../model/chatgpt_request.dart';
+import '../../data/model/chatgpt_request.dart';
+import '../../data/model/review.dart';
 import '../../services/gpt_service.dart';
 
-class BusinessDetailState extends ChangeNotifier {
+class BusinessDetailPageState extends ChangeNotifier {
   final BuildContext context;
   final OpenAIService openAiService;
+  Future<ChatCompletionResponse?>? gptResponse;
   String? businessAnalysis;
+  final _businessService = BusinessService();
 
   String description = 'Loading...';
 
-  BusinessDetailState(this.context, this.googleId)
-      : openAiService = OpenAIService();
+  BusinessDetailPageState(this.context, this.googleId) : openAiService = OpenAIService() {
+    generateAnalysis();
+  }
 
   final searchController = TextEditingController();
 
   final String googleId;
 
-  final String systemContext =
-      """The information given below is a restaurant's details and it's details:
+  Future<void> generateAnalysis() async {
+    await _businessService.fetchBusinessDetails(businessId: googleId, lang: 'en').then((details) {
+      _businessService
+          .fetchBusinessReviews(businessId: googleId, lang: 'en')
+          .then((reviews) => fetchBusinessDescription(businessDetails: details, businessReviews: reviews));
+    });
+  }
+
+  final String systemContext = """The information given below is a restaurant's details and it's details:
 
 Business Name: "Suki-Ya @ Pavilion KL"
 
@@ -91,24 +104,31 @@ Review 4:
 there are multiple reviews. Based on these reviews, you should provide professional feedback. 
 """;
 
-  Future<String> fetchBusinessDescription() async {
+  Future<void> fetchBusinessDescription(
+      {required BusinessDetails businessDetails, required List<Review> businessReviews}) async {
+    final compiledDetails = """
+        $businessDetails
+        
+        $businessReviews
+      """;
+
     final messages = [
-      ChatMessage(role: 'system', content: systemContext),
+      ChatMessage(role: 'system', content: compiledDetails),
       ChatMessage(
           role: 'user',
           content:
-              "can you analysize and summarise how the restaurant is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. "),
+              "can you analyze and summarise how the restaurant is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. "),
     ];
 
     const temperature = 1.0;
 
-    return openAiService
-        .sendChatCompletionRequest(messages, temperature)
-        .then((response) {
+    gptResponse = openAiService.sendChatCompletionRequest(messages, temperature).then((response) {
       businessAnalysis = response.choices.first.message.content;
-      return businessAnalysis!;
+      notifyListeners();
     }).catchError((error) {
-      return 'Failed to fetch description';
+      businessAnalysis = 'Failed to fetch description';
+      notifyListeners();
     });
+    notifyListeners();
   }
 }

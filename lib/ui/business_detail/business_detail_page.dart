@@ -1,37 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:impact_hack/util/constants.dart';
 import 'package:provider/provider.dart';
 
+import '../../data/model/chatgpt_response.dart';
 import '../../services/business_service.dart';
 import '../../util/helpers.dart';
 import '../comparison_page/comparison_page.dart';
 import '../comparison_page/comparison_page_state.dart';
-import 'business_detail_state.dart';
+import 'business_detail_page_state.dart';
 
-class BusinessDetail extends StatelessWidget {
-  const BusinessDetail({Key? key}) : super(key: key);
+class BusinessDetailPage extends StatelessWidget {
+  const BusinessDetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final state = context.read<BusinessDetailState>();
-    final businessDetailState = Provider.of<BusinessDetailState>(context);
-    final descriptionFuture = businessDetailState.fetchBusinessDescription();
+    final state = context.watch<BusinessDetailPageState>();
 
     return Scaffold(
       appBar: AppBar(title: const SelectableText('Analysis')),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
-          child: FutureBuilder<String>(
-            future: descriptionFuture,
+          child: state.gptResponse == null ? const CircularProgressIndicator() : FutureBuilder<ChatCompletionResponse?>(
+            future: state.gptResponse,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
               } else if (snapshot.hasError) {
                 return const SelectableText('Failed to fetch description');
               } else {
-                final description = snapshot.data ?? '';
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -84,7 +81,7 @@ class BusinessDetail extends StatelessWidget {
                                           MaterialPageRoute(
                                               builder: (context) {
                                                 return ChangeNotifierProvider(
-                                                    create: (context) => ComparisonPageState(context, suggestion.googleId, state.businessAnalysis!), child: ComparisonPage());
+                                                    create: (context) => ComparisonPageState(context, suggestion.googleId, state.businessAnalysis!), child: const ComparisonPage());
                                               }
                                           )
                                       );
@@ -113,7 +110,8 @@ class BusinessDetail extends StatelessWidget {
 
 
                             },
-                            child: Container(decoration: const BoxDecoration(
+                            child: Container(
+                                decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.all(Radius.circular(4.0))
                             ), child: Padding(
@@ -141,7 +139,7 @@ class BusinessDetail extends StatelessWidget {
                               .textTheme
                               .titleLarge),
                           const SizedBox(height: 8.0),
-                          SelectableText(description, style: Theme
+                          SelectableText(state.businessAnalysis!, style: Theme
                               .of(context)
                               .textTheme
                               .bodyLarge),
