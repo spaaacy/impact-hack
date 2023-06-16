@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:impact_hack/ui/search_page/search_page.dart';
 import 'package:impact_hack/util/constants.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,7 +15,54 @@ class HomePage extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("PLACEHOLDER-NAME"),
+              Row(
+                children: [
+                  Text("PLACEHOLDER-NAME"),
+                  SizedBox(width: 16),
+                  // ElevatedButton.icon(
+                  //   onPressed: () {
+                  //     // Perform search action
+                  //   },
+                  //   icon: Icon(Icons.search),
+                  //   label: Text("Search"),
+                  //   style: ElevatedButton.styleFrom(
+                  //     padding: EdgeInsetsDirectional.fromSTEB(14, 20, 60, 20),
+                  //     backgroundColor: const Color.fromARGB(255, 129, 27, 27),
+                  //     foregroundColor: Colors.white,
+                  //     textStyle: TextStyle(fontSize: 16),
+                  //   ),
+                  // ),
+
+                  TextButton(
+                    onPressed: () {
+                      // Navigate to Search page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SearchPage(),
+                        ),
+                      );
+                    },
+                    child: const Row(
+                      children: [
+                        Icon(
+                          Icons.search,
+                          color: Colors.black,
+                        ),
+                        SizedBox(width: 6),
+                        Text(
+                          "Search",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
               Spacer(),
               Row(
                 children: [
@@ -46,19 +94,6 @@ class HomePage extends StatelessWidget {
                   SizedBox(width: 16),
                   TextButton(
                     onPressed: () {
-                      // Navigate to Search page
-                    },
-                    child: const Text(
-                      "Search",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 16),
-                  TextButton(
-                    onPressed: () {
                       // Navigate to Pricing page
                     },
                     child: const Text(
@@ -71,7 +106,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              Spacer(), // Add a spacer to occupy the available space
+              // Add a spacer to occupy the available space
               TextButton(
                 onPressed: () {
                   // Navigate to Sign In page
@@ -86,20 +121,21 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 16),
-              ElevatedButton(
+              IconButton(
                 onPressed: () {
-                  // Perform "Try for free" action
+                  // Perform avatar icon action
                 },
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-                  backgroundColor: Color.fromARGB(255, 0, 172, 252),
-                  textStyle: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                icon: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/39c.jpg'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  foregroundColor: Colors.white,
                 ),
-                child: Text("Try for free"),
               ),
             ],
           ),
