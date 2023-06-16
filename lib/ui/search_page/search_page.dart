@@ -20,60 +20,91 @@ class SearchPage extends StatelessWidget {
         appBar: AppBar(
           title: Text("Search", style: Theme.of(context).textTheme.titleMedium),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TypeAheadField(
-                keepSuggestionsOnLoading: true,
-                hideOnEmpty: true,
-                hideOnLoading: true,
-                hideOnError: true,
-                suggestionsBoxDecoration: const SuggestionsBoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                  elevation: 4.0,
-                ),
-                suggestionsCallback: (input) async {
-                  final results = await _placeService.fetchSuggestions(
-                      input: input, lang: lang);
-                  return results.take(8);
-                },
-                itemBuilder: (context, suggestion) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      trimDescription(suggestion.description),
-                      style: const TextStyle(fontSize: 16.0),
+        body: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 1,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: Image.asset(
+                  'assets/images/login-page-blank.png',
+                ).image,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      width: 400,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color.fromARGB(255, 0, 0, 0)
+                                .withOpacity(0.3),
+                            spreadRadius: 1,
+                            blurRadius: 10,
+                            offset: Offset(4, 8),
+                          ),
+                        ],
+                      ),
+                      child: TypeAheadField(
+                        keepSuggestionsOnLoading: true,
+                        hideOnEmpty: true,
+                        hideOnLoading: true,
+                        hideOnError: true,
+                        suggestionsBoxDecoration:
+                            const SuggestionsBoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                          elevation: 4.0,
+                        ),
+                        suggestionsCallback: (input) async {
+                          final results = await _placeService.fetchSuggestions(
+                              input: input, lang: lang);
+                          return results.take(8);
+                        },
+                        itemBuilder: (context, suggestion) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              trimDescription(suggestion.description),
+                              style: const TextStyle(fontSize: 16.0),
+                            ),
+                          );
+                        },
+                        onSuggestionSelected: (suggestion) async {
+                          // TODO: Suggestion callback
+                        },
+                        textFieldConfiguration: TextFieldConfiguration(
+                          controller: state.searchController,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.search),
+                            suffixIcon: state.searchController.text.isNotEmpty
+                                ? IconButton(
+                                    icon: const Icon(Icons.close),
+                                    color: Colors.black,
+                                    onPressed: () {
+                                      state.searchController.clear();
+                                    })
+                                : null,
+                            border: const OutlineInputBorder(
+                                borderSide: BorderSide.none),
+                            hintText: "Where do you wish to go?",
+                            filled: true,
+                            fillColor: Colors.white,
+                          ),
+                        ),
+                      ),
                     ),
-                  );
-                },
-                onSuggestionSelected: (suggestion) async {
-                  // TODO: Suggestion callback
-                },
-                textFieldConfiguration: TextFieldConfiguration(
-                  controller: state.searchController,
-                  decoration: InputDecoration(
-                    suffixIcon: state.searchController.text.isNotEmpty
-                        ? IconButton(
-                            icon: const Icon(Icons.close),
-                            color: Colors.black,
-                            onPressed: () {
-                              state.searchController.clear();
-                            })
-                        : null,
-                    border:
-                        const OutlineInputBorder(borderSide: BorderSide.none),
-                    hintText: "Where do you wish to go?",
-                    filled: true,
-                    fillColor: Colors.white,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ));
+                  )
+                ],
+              ),
+            )));
   }
 }

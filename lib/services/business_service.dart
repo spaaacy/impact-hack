@@ -19,10 +19,10 @@ class BusinessService {
       'X-RapidAPI-Key': 'a368014d7emsh42b952724a1738dp199cbbjsnd23fb0d00942',
       'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
     });
-
+    //print("before reponse body");
     if (response.statusCode == 200) {
       final result = json.decode(response.body);
-
+      //print("before reponse body");
       if (result['status'] == 'OK') {
         return result['data'].map<Suggestion>((prediction) {
           return Suggestion(
