@@ -1,8 +1,9 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
-import '../model/chatgpt_request.dart';
-import '../model/chatgpt_response.dart';
+import '../data/model/chatgpt_request.dart';
+import '../data/model/chatgpt_response.dart';
 
 class OpenAIService {
   static const String apiEndpoint =

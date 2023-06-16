@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:impact_hack/ui/search_page/search_page.dart';
+import 'package:impact_hack/ui/search_page/search_page_state.dart';
 import 'package:impact_hack/util/constants.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,8 +19,8 @@ class HomePage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text("PLACEHOLDER-NAME"),
-                  SizedBox(width: 16),
+                  const Text("PLACEHOLDER-NAME"),
+                  const SizedBox(width: 16.0),
                   // ElevatedButton.icon(
                   //   onPressed: () {
                   //     // Perform search action
@@ -39,7 +41,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SearchPage(),
+                          builder: (context) => ChangeNotifierProvider(create: (context) => SearchPageState(context), child: SearchPage()),
                         ),
                       );
                     },
