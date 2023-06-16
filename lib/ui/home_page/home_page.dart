@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(12.0))
               ),
-              child: Text(sampleDescription, style: Theme.of(context).textTheme.bodyLarge),
+              child: Text(loremImpsum, style: Theme.of(context).textTheme.bodyLarge),
             )
           ],
         ),
