@@ -31,7 +31,8 @@ class BusinessDetailPage extends StatelessWidget {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const Center(child: CircularProgressIndicator());
                     } else if (snapshot.hasError) {
-                      return const SelectableText('Failed to fetch description');
+                      return const SelectableText(
+                          'Failed to fetch description');
                     } else {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +41,8 @@ class BusinessDetailPage extends StatelessWidget {
                             children: [
                               SelectableText(
                                 '${state.businessDetails!.name}',
-                                style: Theme.of(context).textTheme.headlineLarge,
+                                style:
+                                    Theme.of(context).textTheme.headlineLarge,
                               ),
                               const Spacer(),
                               MouseRegion(
@@ -50,8 +52,11 @@ class BusinessDetailPage extends StatelessWidget {
                                     showDialog(
                                         context: context,
                                         builder: (context) {
-                                          final businessService = BusinessService();
-                                          String lang = Localizations.localeOf(context).languageCode;
+                                          final businessService =
+                                              BusinessService();
+                                          String lang =
+                                              Localizations.localeOf(context)
+                                                  .languageCode;
 
                                           return Dialog(
                                             child: TypeAheadField(
@@ -59,58 +64,84 @@ class BusinessDetailPage extends StatelessWidget {
                                               hideOnEmpty: true,
                                               hideOnLoading: true,
                                               hideOnError: true,
-                                              suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+                                              suggestionsBoxDecoration:
+                                                  const SuggestionsBoxDecoration(
                                                 color: Colors.white,
-                                                borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(12.0)),
                                                 elevation: 4.0,
                                               ),
-                                              suggestionsCallback: (input) async {
+                                              suggestionsCallback:
+                                                  (input) async {
                                                 final results =
-                                                    await businessService.fetchSuggestions(input: input, lang: lang);
+                                                    await businessService
+                                                        .fetchSuggestions(
+                                                            input: input,
+                                                            lang: lang);
                                                 return results.take(8);
                                               },
-                                              itemBuilder: (context, suggestion) {
+                                              itemBuilder:
+                                                  (context, suggestion) {
                                                 return Padding(
-                                                  padding: const EdgeInsets.all(8.0),
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
                                                   child: Text(
-                                                    trimDescription(suggestion.description).capitalize(),
-                                                    style: const TextStyle(fontSize: 16.0),
+                                                    trimDescription(suggestion
+                                                            .description)
+                                                        .capitalize(),
+                                                    style: const TextStyle(
+                                                        fontSize: 16.0),
                                                   ),
                                                 );
                                               },
-                                              onSuggestionSelected: (suggestion) async {
-
-                                                  Navigator.of(state.context)
-                                                      .pushReplacement(
-                                                      MaterialPageRoute(builder: (context) =>
-                                                          ChangeNotifierProvider(
-                                                              create: (context) {
-                                                                return ComparisonPageState(
-                                                                  context,
-                                                                  suggestion.googleId,
-                                                                  state.businessAnalysis!,
-                                                                  state.businessDetails!,
-                                                                  state.businessReviews!,
-                                                                );
-                                                              },
-                                                              child: const ComparisonPage())
-                                                      )
-
-                                                  );
+                                              onSuggestionSelected:
+                                                  (suggestion) async {
+                                                Navigator.of(state.context).pushReplacement(
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            ChangeNotifierProvider(
+                                                                create:
+                                                                    (context) {
+                                                                  return ComparisonPageState(
+                                                                    context,
+                                                                    suggestion
+                                                                        .googleId,
+                                                                    state
+                                                                        .businessAnalysis!,
+                                                                    state
+                                                                        .businessDetails!,
+                                                                    state
+                                                                        .businessReviews!,
+                                                                  );
+                                                                },
+                                                                child:
+                                                                    const ComparisonPage())));
                                               },
-                                              textFieldConfiguration: TextFieldConfiguration(
-                                                controller: state.searchController,
+                                              textFieldConfiguration:
+                                                  TextFieldConfiguration(
+                                                controller:
+                                                    state.searchController,
                                                 decoration: InputDecoration(
-                                                  suffixIcon: state.searchController.text.isNotEmpty
+                                                  suffixIcon: state
+                                                          .searchController
+                                                          .text
+                                                          .isNotEmpty
                                                       ? IconButton(
-                                                          icon: const Icon(Icons.close),
+                                                          icon: const Icon(
+                                                              Icons.close),
                                                           color: Colors.black,
                                                           onPressed: () {
-                                                            state.searchController.clear();
+                                                            state
+                                                                .searchController
+                                                                .clear();
                                                           })
                                                       : null,
-                                                  border: const OutlineInputBorder(borderSide: BorderSide.none),
-                                                  hintText: "Where do you wish to go?",
+                                                  border:
+                                                      const OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide.none),
+                                                  hintText:
+                                                      "Where do you wish to go?",
                                                   filled: true,
                                                   fillColor: Colors.white,
                                                 ),
@@ -121,11 +152,16 @@ class BusinessDetailPage extends StatelessWidget {
                                   },
                                   child: Container(
                                       decoration: const BoxDecoration(
-                                          color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(4.0))),
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(4.0))),
                                       child: Padding(
                                         padding: const EdgeInsets.all(12.0),
-                                        child: Text("Compare with another business",
-                                            style: Theme.of(context).textTheme.titleMedium),
+                                        child: Text(
+                                            "Compare with another business",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium),
                                       )),
                                 ),
                               )
@@ -135,13 +171,19 @@ class BusinessDetailPage extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.all(16.0),
                             decoration: const BoxDecoration(
-                                color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12.0))),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SelectableText("Analysis", style: Theme.of(context).textTheme.titleLarge),
+                                SelectableText("Analysis",
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge),
                                 const SizedBox(height: 8.0),
-                                SelectableText(state.businessAnalysis!, style: Theme.of(context).textTheme.bodyLarge),
+                                SelectableText(state.businessAnalysis!,
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge),
                               ],
                             ),
                           )
