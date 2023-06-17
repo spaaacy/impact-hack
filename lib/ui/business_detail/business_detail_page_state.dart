@@ -47,7 +47,7 @@ class BusinessDetailPageState extends ChangeNotifier {
       ChatMessage(
           role: 'user',
           content:
-              "can you analyze and summarise how the restaurant is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. "),
+              'I want to know the positive aspects and areas of improvements. Ignore reviews where owner has responded to the comment and fixed the problem. Also, add a count beside each positive aspect and areas of improvement indicating how many reviews highlight that same topic. An example is "positive aspect 1 (1 review)". Do not add a new section for count.'),
     ];
 
     const temperature = 1.0;

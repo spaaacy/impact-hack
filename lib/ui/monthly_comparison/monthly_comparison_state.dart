@@ -40,7 +40,7 @@ class MonthlyComparisonState extends ChangeNotifier {
     await _businessService.fetchBusinessDetails(businessId: googleId, lang: 'en').then((details) {
       businessDetails = details;
       _businessService
-          .fetchBusinessReviews(businessId: googleId, lang: 'en', limit: 40, newest: true)
+          .fetchBusinessReviews(businessId: googleId, lang: 'en', limit: 100, newest: true)
           .then((reviews) {
         final date = DateTime.now();
         businessReviewsThisMonth = selectReviewByMonth(reviews, DateTime(date.year, date.month - 1), DateTime(date.year, date.month));
@@ -63,7 +63,7 @@ class MonthlyComparisonState extends ChangeNotifier {
         ChatMessage(
             role: 'user',
             content:
-            "These are the reviews from $thisMonthString, can you analyze and summarise how the restaurant is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. "),
+            "These are the reviews from $thisMonthString, can you analyze and summarise how the hotel is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. "),
       ];
     } else {
       messages = [
@@ -71,7 +71,7 @@ class MonthlyComparisonState extends ChangeNotifier {
         ChatMessage(
             role: 'user',
             content:
-            "These are the reviews from $lastMonthString, can you analyze and summarise how the restaurant is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. "),
+            "These are the reviews from $lastMonthString, can you analyze and summarise how the hotel is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. "),
       ];
     }
 
