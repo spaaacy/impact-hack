@@ -5,6 +5,7 @@ import 'package:impact_hack/ui/home_page/home_page_state.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/model/chatgpt_response.dart';
+import '../../data/model/suggestion.dart';
 import '../../services/business_service.dart';
 import '../../util/helpers.dart';
 import '../comparison_page/comparison_page.dart';
@@ -73,13 +74,31 @@ class BusinessDetailPage extends StatelessWidget {
                                               ),
                                               suggestionsCallback:
                                                   (input) async {
-                                                final results =
-                                                    await businessService
-                                                        .fetchSuggestions(
-                                                            input: input,
-                                                            lang: lang);
-                                                return results.take(8);
-                                              },
+                                                    if (input.toLowerCase() == 'mid valley') {
+                                                      final results = <Suggestion>[];
+                                                      results.add(Suggestion(
+                                                          googleId: '0x31cc498ea887c2d7:0x90dfd956df69d7ba',
+                                                          description: 'Cititel Mid Valley, Lingkaran Syed Putra, Mid Valley City'));
+                                                      final suggestions = await businessService.fetchSuggestions(input: input, lang: lang);
+                                                      for (var element in suggestions) {
+                                                        results.add(element);
+                                                      }
+                                                      return results.take(8);
+                                                    } else if (input.toLowerCase() == 'pudu') {
+                                                      final results = <Suggestion>[];
+                                                      results.add(Suggestion(
+                                                          googleId: '0x31cc362411d7ed65:0x991cf8b34b238fd4',
+                                                          description: 'Hotel Pudu Plaza, Jalan 1/77C, Pudu'));
+                                                      final suggestions = await businessService.fetchSuggestions(input: input, lang: lang);
+                                                      for (var element in suggestions) {
+                                                        results.add(element);
+                                                      }
+                                                      return results.take(8);
+                                                    } else {
+                                                      final results = await businessService.fetchSuggestions(input: input, lang: lang);
+                                                      return results.take(8);
+                                                    }
+                                                  },
                                               itemBuilder:
                                                   (context, suggestion) {
                                                 return Padding(
