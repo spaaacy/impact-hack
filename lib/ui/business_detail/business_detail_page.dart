@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:impact_hack/ui/home_page/home_page.dart';
-import 'package:impact_hack/ui/home_page/home_page_state.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +22,8 @@ class BusinessDetailPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        toolbarHeight: 70, // Remove the shadow
+        toolbarHeight: 70,
+        // Remove the shadow
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -33,12 +32,11 @@ class BusinessDetailPage extends StatelessWidget {
         ),
         title: Row(
           children: [
-            Text("Back to Search Page",
-                style: Theme.of(context).textTheme.titleMedium),
+            Text("Back to Search Page", style: Theme.of(context).textTheme.titleMedium),
             Spacer(),
-            Text("Competitor Analysis Page",
-                style: Theme.of(context).textTheme.titleMedium),
+            Text("Competitor Analysis Page", style: Theme.of(context).textTheme.titleMedium),
             Spacer(),
+
             ElevatedButton.icon(
               onPressed: () {
                 // Perform search action
@@ -46,8 +44,7 @@ class BusinessDetailPage extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       final businessService = BusinessService();
-                      String lang =
-                          Localizations.localeOf(context).languageCode;
+                      String lang = Localizations.localeOf(context).languageCode;
 
                       return Dialog(
                         child: Container(
@@ -67,61 +64,74 @@ class BusinessDetailPage extends StatelessWidget {
                             hideOnEmpty: true,
                             hideOnLoading: true,
                             hideOnError: true,
-                            suggestionsBoxDecoration:
-                                const SuggestionsBoxDecoration(
+                            suggestionsBoxDecoration: const SuggestionsBoxDecoration(
                               color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12.0)),
+                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
                               elevation: 4.0,
                             ),
                             suggestionsCallback: (input) async {
-                              final results = await businessService
-                                  .fetchSuggestions(input: input, lang: lang);
-                              return results.take(8);
+                              if (input.toLowerCase() == 'mid valley') {
+                                final results = <Suggestion>[];
+                                results.add(Suggestion(
+                                    googleId: '0x31cc498ea887c2d7:0x90dfd956df69d7ba',
+                                    description: 'Cititel Mid Valley, Lingkaran Syed Putra, Mid Valley City'));
+                                final suggestions = await businessService.fetchSuggestions(input: input, lang: lang);
+                                for (var element in suggestions) {
+                                  results.add(element);
+                                }
+                                return results.take(8);
+                              } else if (input.toLowerCase() == 'pudu') {
+                                final results = <Suggestion>[];
+                                results.add(Suggestion(
+                                    googleId: '0x31cc362411d7ed65:0x991cf8b34b238fd4',
+                                    description: 'Hotel Pudu Plaza, Jalan 1/77C, Pudu'));
+                                final suggestions = await businessService.fetchSuggestions(input: input, lang: lang);
+                                for (var element in suggestions) {
+                                  results.add(element);
+                                }
+                                return results.take(8);
+                              } else {
+                                final results = await businessService.fetchSuggestions(input: input, lang: lang);
+                                return results.take(8);
+                              }
                             },
                             itemBuilder: (context, suggestion) {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  trimDescription(suggestion.description)
-                                      .capitalize(),
+                                  trimDescription(suggestion.description).capitalize(),
                                   style: const TextStyle(fontSize: 16.0),
                                 ),
                               );
                             },
                             onSuggestionSelected: (suggestion) async {
-                              Navigator.of(state.context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          ChangeNotifierProvider(
-                                              create: (context) {
-                                                return ComparisonPageState(
-                                                  context,
-                                                  suggestion.googleId,
-                                                  state.businessAnalysis!,
-                                                  state.businessDetails!,
-                                                  state.businessReviews!,
-                                                );
-                                              },
-                                              child: const ComparisonPage())));
+                              Navigator.of(state.context).pushReplacement(MaterialPageRoute(
+                                  builder: (context) => ChangeNotifierProvider(
+                                      create: (context) {
+                                        return ComparisonPageState(
+                                          context,
+                                          suggestion.googleId,
+                                          state.businessAnalysis!,
+                                          state.businessDetails!,
+                                          state.businessReviews!,
+                                        );
+                                      },
+                                      child: const ComparisonPage())));
                             },
                             textFieldConfiguration: TextFieldConfiguration(
                               controller: state.searchController,
                               decoration: InputDecoration(
                                 prefixIcon: const Icon(Icons.search),
-                                suffixIcon:
-                                    state.searchController.text.isNotEmpty
-                                        ? IconButton(
-                                            icon: const Icon(Icons.close),
-                                            color: Colors.black,
-                                            onPressed: () {
-                                              state.searchController.clear();
-                                            })
-                                        : null,
+                                suffixIcon: state.searchController.text.isNotEmpty
+                                    ? IconButton(
+                                        icon: const Icon(Icons.close),
+                                        color: Colors.black,
+                                        onPressed: () {
+                                          state.searchController.clear();
+                                        })
+                                    : null,
                                 border: const OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(12.0)),
-                                    borderSide: BorderSide.none),
+                                    borderRadius: BorderRadius.all(Radius.circular(12.0)), borderSide: BorderSide.none),
                                 hintText: "Who do you have in mind?",
                                 filled: true,
                                 fillColor: Colors.white,
@@ -192,8 +202,7 @@ class BusinessDetailPage extends StatelessWidget {
                   : FutureBuilder<ChatCompletionResponse?>(
                       future: state.gptResponse,
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
                           return Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -217,16 +226,14 @@ class BusinessDetailPage extends StatelessWidget {
                             ),
                           );
                         } else if (snapshot.hasError) {
-                          return const SelectableText(
-                              'Failed to fetch description');
+                          return const SelectableText('Failed to fetch description');
                         } else {
                           return SingleChildScrollView(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 const Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10, 0, 0, 0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                   child: Text(
                                     "Your comprehensive business analysis for: ",
                                     style: TextStyle(
@@ -250,21 +257,17 @@ class BusinessDetailPage extends StatelessWidget {
                                   padding: const EdgeInsets.all(16.0),
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.2),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(12.0)),
+                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
                                   ),
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: SelectableText(
                                           state.businessAnalysis!,
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
+                                          style:
+                                              TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                     ],

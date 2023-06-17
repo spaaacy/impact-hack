@@ -63,7 +63,7 @@ class MonthlyComparisonState extends ChangeNotifier {
         ChatMessage(
             role: 'user',
             content:
-            "These are the reviews from $thisMonthString, can you analyze and summarise how the hotel is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. "),
+            "These are the reviews from $thisMonthString, use the above information to describe the positive aspects, negative aspects, and areas for improvement of the hotel. Keep the reply greater than 300 words."),
       ];
     } else {
       messages = [
@@ -71,7 +71,7 @@ class MonthlyComparisonState extends ChangeNotifier {
         ChatMessage(
             role: 'user',
             content:
-            "These are the reviews from $lastMonthString, can you analyze and summarise how the hotel is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. "),
+            "These are the reviews from $lastMonthString, use the above information to describe the positive aspects, negative aspects, and areas for improvement of the hotel. Keep the reply greater than 300 words."),
       ];
     }
 

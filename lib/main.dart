@@ -27,10 +27,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: ChangeNotifierProvider(
-          // create: (context) => HomePageState(context), child: const HomePage()),
-          create: (context) => BusinessDetailPageState(
-              context, "0x31cdb4a9c681855f:0xd8b22b163e8162ff"),
-          child: const BusinessDetailPage()),
+          create: (context) => HomePageState(context), child: const HomePage()),
     );
   }
 }
