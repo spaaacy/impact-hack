@@ -23,19 +23,24 @@ class LocationDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0,
-        toolbarHeight: 70, // Remove the shadow
+        elevation: 0, // Remove the shadow
+        toolbarHeight: 70,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              "Back to Location Search",
-              style: Theme.of(context).textTheme.titleMedium,
+            Container(
+              height: 60,
+              child: Image.asset(
+                'assets/images/lemons-logo.png',
+                fit: BoxFit.fill,
+              ),
             ),
           ],
         ),

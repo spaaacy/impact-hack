@@ -14,13 +14,22 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          toolbarHeight: 60,
+          toolbarHeight: 70,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text("PLACEHOLDER-NAME"),
+                  //const Text("PLACEHOLDER-NAME"),
+                  Container(
+                    height: 60,
+                    child: Image.asset(
+                      'assets/images/lemons-logo.png',
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                   const SizedBox(width: 16.0),
                   TextButton(
                     onPressed: () {
@@ -148,8 +157,8 @@ class HomePage extends StatelessWidget {
                   // Perform avatar icon action
                 },
                 icon: Container(
-                  width: 40,
-                  height: 40,
+                  width: 55,
+                  height: 55,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
@@ -182,129 +191,159 @@ class HomePage extends StatelessWidget {
               padding: EdgeInsets.all(24.0),
               child: Row(
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Visualise Your Prospects",
-                          style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const Text(
-                          "Empowering SMEs to take charge of monitoring business processes \nand predicting market strategies, with the help of cutting edge AI.",
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        Row(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                // Handle "Get Started" button press
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    Color.fromARGB(255, 9, 54, 202),
-                                foregroundColor: Colors.white,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    26, 30, 34, 30),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                textStyle: TextStyle(fontSize: 18),
-                              ),
-                              child: const Row(
-                                children: [
-                                  Icon(Icons.play_arrow_rounded),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    "Get Started",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(width: 16),
-                            ElevatedButton(
-                              onPressed: () {
-                                // Handle "Try Demo" button press
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                foregroundColor:
-                                    Color.fromARGB(255, 9, 54, 202),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 40, vertical: 30),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                textStyle: TextStyle(fontSize: 18),
-                              ),
-                              child: Text("Try Demo"),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 75,
-                        ),
-                        const Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
-                          child: Text(
-                            "Proudly powered by lots and lemons... and OpenAI API:",
+                  Expanded(
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsetsDirectional.fromSTEB(150, 0, 0, 0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Visualise Your Prospects",
                             style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              width: 210,
-                              height: 75,
-                              child: Image.asset(
-                                'assets/images/chatgpt-logo.png',
-                                fit: BoxFit.fill,
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            "Empowering SMEs to take charge of monitoring business processes \nand predicting market strategies, with the help of cutting edge AI.",
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  // Handle "Get Started" button press
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      Color.fromARGB(255, 9, 54, 202),
+                                  foregroundColor: Colors.white,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      26, 30, 34, 30),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  textStyle: TextStyle(fontSize: 18),
+                                ),
+                                child: const Row(
+                                  children: [
+                                    Icon(Icons.play_arrow_rounded),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      "Get Started",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 16),
+                              ElevatedButton(
+                                onPressed: () {
+                                  // Handle "Try Demo" button press
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  foregroundColor:
+                                      Color.fromARGB(255, 9, 54, 202),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 40, vertical: 30),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  textStyle: TextStyle(fontSize: 18),
+                                ),
+                                child: Text("Try Demo"),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 75,
+                          ),
+                          const Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
+                            child: Text(
+                              "Proudly powered by lots and lemons... and OpenAI API:",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
                               ),
                             ),
-                            SizedBox(width: 16),
-                            Container(
-                              width: 200,
-                              height: 75,
-                              child: Image.asset(
-                                'assets/images/lemons-logo.png',
-                                fit: BoxFit.cover,
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                width: 210,
+                                height: 75,
+                                child: Image.asset(
+                                  'assets/images/chatgpt-logo.png',
+                                  fit: BoxFit.fill,
+                                ),
                               ),
-                            ),
-                            SizedBox(width: 26),
-                            Container(
-                              width: 200,
-                              height: 75,
-                              child: Image.asset(
-                                'assets/images/juicer-logo.png',
-                                fit: BoxFit.cover,
+                              SizedBox(width: 16),
+                              Container(
+                                width: 200,
+                                height: 75,
+                                child: Image.asset(
+                                  'assets/images/lemons-logo.png',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                              SizedBox(width: 26),
+                              Container(
+                                width: 200,
+                                height: 75,
+                                child: Image.asset(
+                                  'assets/images/juicer-logo.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
+                  // Expanded(
+                  //     child: Container(
+                  //   width: double.infinity,
+                  //   child: Column(
+                  //     mainAxisAlignment: MainAxisAlignment.center,
+                  //     crossAxisAlignment: CrossAxisAlignment.center,
+                  //     children: [
+                  //       Container(
+                  //         width: MediaQuery.of(context).size.width / 3,
+                  //         height: MediaQuery.of(context).size.height / 1.2,
+                  //         decoration: BoxDecoration(
+                  //           shape: BoxShape.circle,
+                  //           color: Colors.transparent,
+                  //           // borderRadius:
+                  //           //     BorderRadius.all(Radius.circular(12.0)),
+                  //           image: DecorationImage(
+                  //             fit: BoxFit.fitHeight,
+                  //             image: Image.asset(
+                  //               'assets/images/skyline-detailed.png',
+                  //             ).image,
+                  //           ),
+                  //         ),
+                  //       )
+                  //     ],
+                  //   ),
+                  // ))
                 ],
               ),
             ),

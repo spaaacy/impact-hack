@@ -20,14 +20,28 @@ class LocationSearch extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0, // Remove the shadow
+          toolbarHeight: 70,
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          title: Text("Back to Home",
-              style: Theme.of(context).textTheme.titleMedium),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 60,
+                child: Image.asset(
+                  'assets/images/lemons-logo.png',
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ],
+          ),
+          // title: Text("Back to Home",
+          //     style: Theme.of(context).textTheme.titleMedium),
         ),
         backgroundColor: Color.fromARGB(255, 214, 206, 184),
         body: Padding(
@@ -39,7 +53,8 @@ class LocationSearch extends StatelessWidget {
               color: Colors.white,
               borderRadius: const BorderRadius.all(Radius.circular(12.0)),
               image: DecorationImage(
-                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.3), BlendMode.darken),
                 fit: BoxFit.fill,
                 image: Image.asset(
                   'assets/images/kl-skyline.png',
@@ -54,7 +69,10 @@ class LocationSearch extends StatelessWidget {
                 children: [
                   const Text(
                     "Find your new home",
-                    style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 60,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                   const SizedBox(
                     height: 20,
@@ -130,16 +148,16 @@ class LocationSearch extends StatelessWidget {
                                 ),
                               ],
                             ))
-                            // child: const Row(
-                            //   crossAxisAlignment: CrossAxisAlignment.center,
-                            //   children: [
-                            //     Icon(Icons.search),
-                            //     SizedBox(
-                            //       width: 4.0,
-                            //     ),
-                            //     Text('Search'),
-                            //   ],
-                            // ))
+                        // child: const Row(
+                        //   crossAxisAlignment: CrossAxisAlignment.center,
+                        //   children: [
+                        //     Icon(Icons.search),
+                        //     SizedBox(
+                        //       width: 4.0,
+                        //     ),
+                        //     Text('Search'),
+                        //   ],
+                        // ))
                       ],
                     ),
                   )
