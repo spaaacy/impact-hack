@@ -31,21 +31,14 @@ class LocationDetailState extends ChangeNotifier {
   final String input;
 
   Future<void> generateAnalysis() async {
-    businessesNearby = await _businessService.fetchNearbyBusinesses(input: "hotel $input", lang: 'en');
+    businessesNearby = await _businessService.fetchNearbyBusinesses(input: "hotel $input", lang: 'en', limit: 4);
 
-    // await Future.forEach(businessesNearby!.take(10), (business) async {
-    //   _businessService.fetchBusinessReviews(businessId: business.businessId!, lang: 'en', limit: 5).then((value) {
-    //     String compiledDetails = compileBusinessDetailsAndReviews(business, value);
-    //     gptSystemContent = '$gptSystemContent\n\n$compiledDetails';
-    //   });
-    // });
-
-    for (var business in businessesNearby!.take(10)) {
+    for (var business in businessesNearby!) {
       final businessReviews =
           await _businessService.fetchBusinessReviews(businessId: business.businessId!, lang: 'en', limit: 5);
       String compiledDetails = compileBusinessDetailsAndReviews(business, businessReviews);
       gptSystemContent = '$gptSystemContent\n\n$compiledDetails';
-      sleep(const Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 500));
     }
 
     fetchBusinessAnalysis();
@@ -57,7 +50,7 @@ class LocationDetailState extends ChangeNotifier {
       ChatMessage(
           role: 'user',
           content:
-              'Use the above information to describe the positive aspects, negative aspects, and areas for improvement of all the hotel. Keep the reply greater than 300 words.'),
+              'Compile and use the above information to describe the positive aspects, negative aspects, and areas for improvement for hotels in that area, without naming specific hotels. Keep the reply within 500 words.'),
     ];
 
     const temperature = 1.0;
