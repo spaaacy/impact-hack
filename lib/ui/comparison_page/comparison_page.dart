@@ -35,15 +35,27 @@ class ComparisonPage extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Container(
+                                  width: double.infinity,
                                   padding: const EdgeInsets.all(16.0),
-                                  decoration:
-                                  const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(12.0))),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      SelectableText("${state.previousBusinessDetails.name}", style: Theme.of(context).textTheme.titleLarge),
+                                      SelectableText(
+                                          "${state.previousBusinessDetails.name}",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge),
                                       const SizedBox(height: 8.0),
-                                      SelectableText(state.previousBusinessAnalysis, style: Theme.of(context).textTheme.bodyLarge),
+                                      SelectableText(
+                                          state.previousBusinessAnalysis,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge),
                                     ],
                                   ),
                                 ),
@@ -51,15 +63,27 @@ class ComparisonPage extends StatelessWidget {
                               const SizedBox(width: 8.0),
                               Expanded(
                                 child: Container(
+                                  width: double.infinity,
                                   padding: const EdgeInsets.all(16.0),
-                                  decoration:
-                                  const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(12.0))),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      SelectableText("${state.currentBusinessDetails!.name}", style: Theme.of(context).textTheme.titleLarge),
+                                      SelectableText(
+                                          "${state.currentBusinessDetails!.name}",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge),
                                       const SizedBox(height: 8.0),
-                                      SelectableText(state.currentBusinessAnalysis!, style: Theme.of(context).textTheme.bodyLarge),
+                                      SelectableText(
+                                          state.currentBusinessAnalysis!,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge),
                                     ],
                                   ),
                                 ),
@@ -67,25 +91,27 @@ class ComparisonPage extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 12.0),
-
                           Container(
                             padding: const EdgeInsets.all(16.0),
-                            decoration:
-                            const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12.0))),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SelectableText("Final Comparison", style: Theme.of(context).textTheme.titleLarge),
+                                SelectableText("Final Comparison",
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge),
                                 const SizedBox(height: 8.0),
-                                SelectableText(loremImpsum, style: Theme.of(context).textTheme.bodyLarge),
+                                SelectableText(loremImpsum,
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge),
                               ],
                             ),
                           ),
-
-
                         ]);
                   }
                 }));
   }
 }
-

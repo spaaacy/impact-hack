@@ -1,11 +1,10 @@
 import 'package:latlong2/latlong.dart';
 
 const String mapsApiKey = "AIzaSyDgjWPTfYPcEWLtHQMF9Sy0yr68EtSD63w";
-const String rapidApiKey = "1d3588782amshd39f2396321144ep1b44dajsnbe2d483a62b3  ";
+const String rapidApiKey = "185bbf5a26msh747d4bf737dab46p19804ejsnc5ad13054d21";
 const LatLng defaultLatLng = LatLng(3.140853, 101.693207);
 const String sampleBusinessName = "Business Name";
-const String loremImpsum =
-    """
+const String loremImpsum = """
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id cursus augue, sit amet feugiat ligula. In tincidunt lacus at maximus vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus tristique ut augue in suscipit. Phasellus odio nibh, eleifend in nulla non, tincidunt facilisis dui. Aliquam scelerisque urna elementum, aliquet dolor sed, mollis purus. Phasellus sagittis lectus sit amet nisl venenatis, id cursus felis lacinia. Curabitur interdum ut odio non molestie. Vivamus pharetra, eros eu ultricies egestas, erat mi tempor ex, eget egestas neque mi vulputate sem. In finibus rutrum nisi sit amet pellentesque. Phasellus est tellus, sagittis ultricies egestas sed, blandit ac neque. Pellentesque fermentum blandit urna. Nam ornare, metus at aliquam lacinia, odio lectus laoreet libero, ac blandit urna mauris id magna. Pellentesque vel nisi tristique, fringilla lacus sit amet, ullamcorper nibh. Phasellus a massa tristique, tempor neque eu, venenatis libero.
 
 In elementum fringilla quam, sed mollis lorem volutpat vel. Aliquam at nibh volutpat, vehicula mauris eget, tempor tortor. Integer ut ipsum faucibus lorem efficitur tempor quis eu arcu. Praesent id lorem lobortis, iaculis turpis et, pretium orci. Duis quis nisl neque. Aliquam tincidunt diam et massa mattis sodales. Suspendisse suscipit magna id sem tempor, interdum malesuada arcu lobortis. Sed ultrices ligula sed luctus maximus. Nullam eu iaculis sem. Fusce consequat, dolor a rhoncus mollis, nunc justo eleifend libero, vitae condimentum massa sem a metus. Etiam ut lorem mauris.
