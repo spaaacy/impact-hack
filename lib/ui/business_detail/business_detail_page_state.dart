@@ -8,6 +8,7 @@ import 'package:impact_hack/services/business_service.dart';
 import '../../data/model/chatgpt_request.dart';
 import '../../data/model/review.dart';
 import '../../services/gpt_service.dart';
+import '../../util/helpers.dart';
 
 class BusinessDetailPageState extends ChangeNotifier {
   final BuildContext context;
@@ -22,8 +23,7 @@ class BusinessDetailPageState extends ChangeNotifier {
 
   BusinessDetailPageState(this.context, this.googleId)
       : openAiService = OpenAIService() {
-    //temp();
-    print(googleId);
+    searchController.addListener(() => notifyListeners());
     generateAnalysis();
   }
 
@@ -49,7 +49,7 @@ class BusinessDetailPageState extends ChangeNotifier {
   Future<void> fetchBusinessAnalysis(
       {required BusinessDetails businessDetails,
       required List<Review> businessReviews}) async {
-    final compiledDetails = "$businessDetails\n\n$businessReviews";
+    String compiledDetails = compileBusinessDetailsAndReviews(businessDetails, businessReviews);
 
     final messages = [
       ChatMessage(role: 'system', content: compiledDetails),

@@ -127,7 +127,7 @@ class BusinessService {
     final request =
         "https://local-business-data.p.rapidapi.com/search?query=$input&limit=$limit&language=$lang&region=ms";
     final response = await client.get(Uri.parse(request), headers: {
-      'X-RapidAPI-Key': "34ba87e8d3mshb29295174337c76p1ead21jsn91e425e76bc7",
+      'X-RapidAPI-Key': rapidApiKey,
       'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
     });
 
@@ -140,7 +140,7 @@ class BusinessService {
               name: data['name'],
               reviewCount: data["review_count"],
               rating: data["rating"],
-              aboutDetails: data['about']['details']);
+              aboutDetails: data['about'] == null ? null : data['about']['details']);
         }).toList();
 
         return details;

@@ -6,7 +6,9 @@ class LocationSearchState extends ChangeNotifier {
   BuildContext context;
   final searchController = TextEditingController();
 
-  LocationSearchState(this.context);
+  LocationSearchState(this.context) {
+    searchController.addListener(() => notifyListeners());
+  }
 
 
 }

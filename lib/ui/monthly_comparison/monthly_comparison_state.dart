@@ -81,7 +81,7 @@ class MonthlyComparisonState extends ChangeNotifier {
 
   Future<void> fetchBusinessAnalysis(
       {required BusinessDetails businessDetails, required List<Review> businessReviews, required bool thisMonth}) async {
-    final compiledDetails = "$businessDetails\n\n$businessReviews";
+    String compiledDetails = compileBusinessDetailsAndReviews(businessDetails, businessReviews);
 
     List<ChatMessage> messages = <ChatMessage>[];
 

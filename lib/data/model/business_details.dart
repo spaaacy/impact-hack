@@ -23,7 +23,7 @@ class BusinessDetails {
   // TODO: Enumerate about details
   @override
   String toString() {
-    String output = "The information given below is a restaurant's details and it's details:\n\n"
+    String output = "The information given below is a hotel's details:\n\n"
         "Business Name: $name\n"
         "Overall Rating: $rating/5\n"
         "Total Reviews: $reviewCount\n";
@@ -34,7 +34,7 @@ class BusinessDetails {
       });
     }
 
-    output = "$output\n\nThere are multiple reviews. Based on these reviews, you should provide professional feedback.";
+    output = "$output\nThese are it's reviews:";
 
     return output;
   }

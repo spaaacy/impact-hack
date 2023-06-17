@@ -104,7 +104,7 @@ class LocationSearch extends StatelessWidget {
                                   .push(MaterialPageRoute(builder: (context) {
                                 return ChangeNotifierProvider(
                                   create: (context) => LocationDetailState(
-                                      context, ''), // TODO: Remove string
+                                      context, state.searchController.text),
                                   child: const LocationDetail(),
                                 );
                               }));

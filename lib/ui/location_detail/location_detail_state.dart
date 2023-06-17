@@ -1,11 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:impact_hack/data/model/business_details.dart';
 import 'package:impact_hack/data/model/chatgpt_response.dart';
 import 'package:impact_hack/services/business_service.dart';
 
 import '../../data/model/chatgpt_request.dart';
-import '../../data/model/review.dart';
 import '../../services/gpt_service.dart';
+import '../../util/helpers.dart';
 
 class LocationDetailState extends ChangeNotifier {
   final BuildContext context;
@@ -15,39 +17,47 @@ class LocationDetailState extends ChangeNotifier {
   Future<ChatCompletionResponse?>? gptResponse;
 
   String? locationAnalysis;
-  BusinessDetails? businessDetails;
-  List<Review>? businessReviews;
+  List<BusinessDetails>? businessesNearby;
 
-  LocationDetailState(this.context, this.googleId) : openAiService = OpenAIService() {
+  LocationDetailState(this.context, this.input) : openAiService = OpenAIService() {
+    searchController.addListener(() => notifyListeners());
     generateAnalysis();
   }
 
   final searchController = TextEditingController();
 
-  final String googleId;
+  String gptSystemContent = 'Here are some hotels in a similar area:';
+
+  final String input;
 
   Future<void> generateAnalysis() async {
-    await _businessService.fetchBusinessDetails(businessId: googleId, lang: 'en').then((details) {
-      businessDetails = details;
-      _businessService
-          .fetchBusinessReviews(businessId: googleId, lang: 'en')
-          .then((reviews) {
-        businessReviews = reviews;
-        fetchBusinessAnalysis(businessDetails: details, businessReviews: reviews);
-      });
-    });
+    businessesNearby = await _businessService.fetchNearbyBusinesses(input: "hotel $input", lang: 'en');
+
+    // await Future.forEach(businessesNearby!.take(10), (business) async {
+    //   _businessService.fetchBusinessReviews(businessId: business.businessId!, lang: 'en', limit: 5).then((value) {
+    //     String compiledDetails = compileBusinessDetailsAndReviews(business, value);
+    //     gptSystemContent = '$gptSystemContent\n\n$compiledDetails';
+    //   });
+    // });
+
+    for (var business in businessesNearby!.take(10)) {
+      final businessReviews =
+          await _businessService.fetchBusinessReviews(businessId: business.businessId!, lang: 'en', limit: 5);
+      String compiledDetails = compileBusinessDetailsAndReviews(business, businessReviews);
+      gptSystemContent = '$gptSystemContent\n\n$compiledDetails';
+      sleep(const Duration(milliseconds: 500));
+    }
+
+    fetchBusinessAnalysis();
   }
 
-  Future<void> fetchBusinessAnalysis(
-      {required BusinessDetails businessDetails, required List<Review> businessReviews}) async {
-    final compiledDetails = "$businessDetails\n\n$businessReviews";
-
+  Future<void> fetchBusinessAnalysis() async {
     final messages = [
-      ChatMessage(role: 'system', content: compiledDetails),
+      ChatMessage(role: 'system', content: gptSystemContent),
       ChatMessage(
           role: 'user',
           content:
-              'I want to know the positive aspects and areas of improvements. Ignore reviews where owner has responded to the comment and fixed the problem. Also, add a count beside each positive aspect and areas of improvement indicating how many reviews highlight that same topic. An example is "positive aspect 1 (1 review)". Do not add a new section for count.'),
+              'Use the above information to describe the positive aspects, negative aspects, and areas for improvement of all the hotel. Keep the reply greater than 300 words.'),
     ];
 
     const temperature = 1.0;
