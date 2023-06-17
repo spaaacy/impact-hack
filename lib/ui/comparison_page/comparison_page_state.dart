@@ -6,6 +6,7 @@ import '../../data/model/chatgpt_response.dart';
 import '../../data/model/review.dart';
 import '../../services/business_service.dart';
 import '../../services/gpt_service.dart';
+import '../../util/helpers.dart';
 
 class ComparisonPageState extends ChangeNotifier {
   final BuildContext context;
@@ -44,7 +45,7 @@ class ComparisonPageState extends ChangeNotifier {
 
   Future<void> fetchBusinessAnalysis(
       {required BusinessDetails businessDetails, required List<Review> businessReviews}) async {
-    final compiledDetails = "$businessDetails\n\n$businessReviews";
+    String compiledDetails = compileBusinessDetailsAndReviews(businessDetails, businessReviews);
 
     final messages = [
       ChatMessage(role: 'system', content: compiledDetails),

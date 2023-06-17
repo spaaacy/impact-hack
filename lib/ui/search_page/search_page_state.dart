@@ -6,7 +6,10 @@ class SearchPageState extends ChangeNotifier {
   final searchController = TextEditingController();
   bool _monthly = false;
 
-  SearchPageState(this.context);
+  SearchPageState(this.context) {
+    searchController.addListener(() => notifyListeners());
+  }
+
   bool get monthly => _monthly;
 
   set monthly(bool value) {

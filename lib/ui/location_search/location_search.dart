@@ -39,9 +39,10 @@ class LocationSearch extends StatelessWidget {
               color: Colors.white,
               borderRadius: const BorderRadius.all(Radius.circular(12.0)),
               image: DecorationImage(
+                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
                 fit: BoxFit.fill,
                 image: Image.asset(
-                  'assets/images/kl-skyline-1.jpg',
+                  'assets/images/kl-skyline.png',
                 ).image,
               ),
             ),
@@ -53,7 +54,7 @@ class LocationSearch extends StatelessWidget {
                 children: [
                   const Text(
                     "Find your new home",
-                    style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                   const SizedBox(
                     height: 20,
@@ -92,7 +93,7 @@ class LocationSearch extends StatelessWidget {
                       controller: state.searchController,
                     ),
                   ),
-                  const SizedBox(height: 24.0),
+                  const SizedBox(height: 8.0),
                   SizedBox(
                     width: 600,
                     child: Row(
@@ -104,21 +105,41 @@ class LocationSearch extends StatelessWidget {
                                   .push(MaterialPageRoute(builder: (context) {
                                 return ChangeNotifierProvider(
                                   create: (context) => LocationDetailState(
-                                      context, ''), // TODO: Remove string
+                                      context, state.searchController.text),
                                   child: const LocationDetail(),
                                 );
                               }));
                             },
                             child: const Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.search),
-                                SizedBox(
-                                  width: 4.0,
+                                Icon(
+                                  Icons.search,
+                                  color: Colors.black,
+                                  size: 22.0,
                                 ),
-                                Text('Search'),
+                                SizedBox(width: 6),
+                                Text(
+                                  "Search",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
                               ],
                             ))
+                            // child: const Row(
+                            //   crossAxisAlignment: CrossAxisAlignment.center,
+                            //   children: [
+                            //     Icon(Icons.search),
+                            //     SizedBox(
+                            //       width: 4.0,
+                            //     ),
+                            //     Text('Search'),
+                            //   ],
+                            // ))
                       ],
                     ),
                   )

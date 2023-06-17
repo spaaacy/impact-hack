@@ -1,3 +1,4 @@
+import 'package:impact_hack/data/model/business_details.dart';
 import 'package:intl/intl.dart';
 
 import '../data/model/review.dart';
@@ -29,4 +30,13 @@ List<Review> selectReviewByMonth(List<Review> reviews, DateTime startDateTime, D
 
 String getMonthString(int month) {
   return DateFormat('MMMM').format(DateTime(0, month));
+}
+
+String compileBusinessDetailsAndReviews(BusinessDetails businessDetails, List<Review> businessReviews) {
+  String compiledDetails = "$businessDetails";
+
+  for (var element in businessReviews) {
+    compiledDetails = '$compiledDetails\n\n$element';
+  }
+  return compiledDetails;
 }
