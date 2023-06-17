@@ -3,6 +3,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:impact_hack/ui/search_page/search_page_state.dart';
 import 'package:provider/provider.dart';
 
+import '../../data/model/suggestion.dart';
 import '../../services/business_service.dart';
 import '../../util/helpers.dart';
 import '../business_detail/business_detail_page.dart';
@@ -84,16 +85,36 @@ class SearchPage extends StatelessWidget {
                         elevation: 4.0,
                       ),
                       suggestionsCallback: (input) async {
-                        final results = await _businessService.fetchSuggestions(
-                            input: input, lang: lang);
-                        return results.take(8);
+                        if (input.toLowerCase() == 'mid valley') {
+                          final results = <Suggestion>[];
+                          results.add(Suggestion(
+                              googleId: '0x31cc498ea887c2d7:0x90dfd956df69d7ba',
+                              description: 'Cititel Mid Valley, Lingkaran Syed Putra, Mid Valley City'));
+                          final suggestions = await _businessService.fetchSuggestions(input: input, lang: lang);
+                          for (var element in suggestions) {
+                            results.add(element);
+                          }
+                          return results.take(8);
+                        } else if (input.toLowerCase() == 'pudu') {
+                          final results = <Suggestion>[];
+                          results.add(Suggestion(
+                              googleId: '0x31cc362411d7ed65:0x991cf8b34b238fd4',
+                              description: 'Hotel Pudu Plaza, Jalan 1/77C, Pudu'));
+                          final suggestions = await _businessService.fetchSuggestions(input: input, lang: lang);
+                          for (var element in suggestions) {
+                            results.add(element);
+                          }
+                          return results.take(8);
+                        } else {
+                          final results = await _businessService.fetchSuggestions(input: input, lang: lang);
+                          return results.take(8);
+                        }
                       },
                       itemBuilder: (context, suggestion) {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            trimDescription(suggestion.description)
-                                .capitalize(),
+                            trimDescription(suggestion.description).capitalize(),
                             style: const TextStyle(fontSize: 16.0),
                           ),
                         );
@@ -109,7 +130,6 @@ class SearchPage extends StatelessWidget {
                                 create: (context) => BusinessDetailPageState(context, suggestion.googleId),
                                 child: const BusinessDetailPage());
                           }
-
                         }));
                       },
                       textFieldConfiguration: TextFieldConfiguration(
@@ -125,9 +145,7 @@ class SearchPage extends StatelessWidget {
                                   })
                               : null,
                           border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12.0)),
-                              borderSide: BorderSide.none),
+                              borderRadius: BorderRadius.all(Radius.circular(12.0)), borderSide: BorderSide.none),
                           hintText: "Where is your location?",
                           filled: true,
                           fillColor: Colors.white,
