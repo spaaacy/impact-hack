@@ -10,14 +10,14 @@ import '../../services/business_service.dart';
 import '../../util/helpers.dart';
 import '../comparison_page/comparison_page.dart';
 import '../comparison_page/comparison_page_state.dart';
-import 'business_detail_page_state.dart';
+import 'location_detail_state.dart';
 
-class BusinessDetailPage extends StatelessWidget {
-  const BusinessDetailPage({Key? key}) : super(key: key);
+class LocationDetail extends StatelessWidget {
+  const LocationDetail({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<BusinessDetailPageState>();
+    final state = context.watch<LocationDetailState>();
 
     return Scaffold(
       appBar: AppBar(title: const SelectableText('Analysis')),
@@ -126,7 +126,7 @@ class BusinessDetailPage extends StatelessWidget {
                                                                     suggestion
                                                                         .googleId,
                                                                     state
-                                                                        .businessAnalysis!,
+                                                                        .locationAnalysis!,
                                                                     state
                                                                         .businessDetails!,
                                                                     state
@@ -200,7 +200,7 @@ class BusinessDetailPage extends StatelessWidget {
                                     style:
                                         Theme.of(context).textTheme.titleLarge),
                                 const SizedBox(height: 8.0),
-                                SelectableText(state.businessAnalysis!,
+                                SelectableText(state.locationAnalysis!,
                                     style:
                                         Theme.of(context).textTheme.bodyLarge),
                               ],
