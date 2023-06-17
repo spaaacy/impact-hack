@@ -164,7 +164,7 @@ class BusinessDetailPage extends StatelessWidget {
               label: Text("Compare with other businesses"),
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsetsDirectional.fromSTEB(10, 20, 20, 20),
-                backgroundColor: Color.fromARGB(255, 161, 35, 35),
+                backgroundColor: Color.fromARGB(255, 45, 68, 145),
                 foregroundColor: Colors.white,
                 textStyle: TextStyle(fontSize: 16),
               ),
@@ -173,7 +173,7 @@ class BusinessDetailPage extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: Color.fromARGB(255, 214, 184, 191),
+      backgroundColor: Color.fromARGB(255, 112, 139, 165),
       body: Center(
         child: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(40, 0, 40, 40),
@@ -252,35 +252,34 @@ class BusinessDetailPage extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10, 0, 0, 0),
-                                  child: Text(
-                                    "Your comprehensive business analysis for: ",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 26,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  '${state.businessDetails!.name}',
-                                  style: const TextStyle(
-                                    color: Color.fromARGB(255, 255, 255, 255),
-                                    fontSize: 48,
-                                    fontWeight: FontWeight.bold,
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        '${state.businessDetails!.name}',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 48,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const Text(
+                                        "A comprehensive business analysis",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 26,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 const SizedBox(height: 32),
                                 Container(
                                   width: MediaQuery.of(context).size.width / 2,
                                   padding: const EdgeInsets.all(16.0),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.2),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(12.0)),
-                                  ),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -289,10 +288,12 @@ class BusinessDetailPage extends StatelessWidget {
                                         padding: const EdgeInsets.all(8.0),
                                         child: SelectableText(
                                           state.businessAnalysis!,
+                                          textAlign: TextAlign.justify,
                                           style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.normal),
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.normal,
+                                          ),
                                         ),
                                       ),
                                     ],
