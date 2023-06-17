@@ -5,6 +5,8 @@ import 'package:impact_hack/ui/comparison_page/comparison_page.dart';
 import 'package:impact_hack/ui/comparison_page/comparison_page_state.dart';
 import 'package:impact_hack/ui/home_page/home_page.dart';
 import 'package:impact_hack/ui/home_page/home_page_state.dart';
+import 'package:impact_hack/ui/location_search/location_search.dart';
+import 'package:impact_hack/ui/location_search/location_search_page.dart';
 import 'package:provider/provider.dart';
 
 void main() {

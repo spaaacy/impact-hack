@@ -6,6 +6,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/model/chatgpt_response.dart';
+import '../../data/model/suggestion.dart';
 import '../../services/business_service.dart';
 import '../../util/helpers.dart';
 import '../comparison_page/comparison_page.dart';

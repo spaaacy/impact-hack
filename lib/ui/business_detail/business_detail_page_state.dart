@@ -88,51 +88,7 @@ Overall, Al-Amar Express appears to be a well-liked restaurant with potential fo
       ChatMessage(
           role: 'user',
           content:
-              "can you analyze and summarise how the restaurant is doing? I want to know  a summary of the positive aspects,  areas of improvements, and suggestion to improve Only analyze the reviews that has 'owner response text(owner response): None' otherwise ignore the review. Make it long please"),
-    ];
-
-    const temperature = 1.0;
-
-    gptResponse = openAiService
-        .sendChatCompletionRequest(messages, temperature)
-        .then((response) {
-      businessAnalysis = response.choices.first.message.content;
-      notifyListeners();
-    }).catchError((error) {
-      businessAnalysis = 'Failed to fetch description';
-      notifyListeners();
-    });
-    notifyListeners();
-  }
-
-  Future<void> justAI() async {
-    String business1 =
-        """Based on the reviews with no owner responses, there are both positive aspects and areas for improvement for Poppo Kanteen Puchong. 
-
-Positive aspects:
-- The restaurant has a wide variety of food options on the menu, from traditional Malaysian street food to western cuisine.
-- The atmosphere is generally comfortable and cozy, with both indoor and outdoor seating options.
-- Pricing is affordable and reasonable.
-- The wait staff is friendly and accommodating.
-- The restaurant is kid-friendly and suitable for gatherings and chit chatting.
-- The nasi lemak is a standout dish and is recommended to try.
-
-Areas for improvement:
-- Service appears to be inconsistent. Some reviewers have mentioned slow or unresponsive service, while others have reported prompt service.
-- Quality of food is mixed. Some dishes received high ratings, while others were described as average or subpar.
-- The restaurant could benefit from improved cleanliness, particularly in the restroom area.
-- The sambal is a point of contention among reviewers, as some find it too sweet.
-- Portion sizes could be more consistent and/or larger to match the price point.
-
-Suggestions for improvement:
-- Improve training for wait staff to ensure prompt and efficient service.
-- Consistently produce high-quality dishes to improve the overall dining experience.
-- Increase focus on cleanliness throughout the restaurant, especially in the restroom area.
-- Consider adjusting the sweetness level of the sambal to better suit consumer preferences.
-- Consider adjusting portion sizes or prices to better match expectations.""";
-    final messages = [
-      ChatMessage(role: 'system', content: business1),
-      ChatMessage(role: 'user', content: "just repeat the prompt given.")
+              'I want to know the positive aspects and areas of improvements. Ignore reviews where owner has responded to the comment and fixed the problem. Also, add a count beside each positive aspect and areas of improvement indicating how many reviews highlight that same topic. An example is "positive aspect 1 (1 review)". Do not add a new section for count.'),
     ];
 
     const temperature = 1.0;

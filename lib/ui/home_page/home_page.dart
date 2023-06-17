@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:impact_hack/ui/location_search/location_search.dart';
+import 'package:impact_hack/ui/location_search/location_search_page.dart';
 import 'package:impact_hack/ui/search_page/search_page.dart';
 import 'package:impact_hack/ui/search_page/search_page_state.dart';
-import 'package:impact_hack/util/constants.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -42,6 +43,37 @@ class HomePage extends StatelessWidget {
                         SizedBox(width: 6),
                         Text(
                           "Search",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 16.0),
+                  TextButton(
+                    onPressed: () {
+                      // Navigate to Search page
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChangeNotifierProvider(
+                              create: (context) => LocationSearchState(context),
+                              child: LocationSearch(),
+                            ),
+                          ));
+                    },
+                    child: const Row(
+                      children: [
+                        Icon(
+                          Icons.location_city,
+                          color: Colors.black,
+                        ),
+                        SizedBox(width: 6),
+                        Text(
+                          "Find a location",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
