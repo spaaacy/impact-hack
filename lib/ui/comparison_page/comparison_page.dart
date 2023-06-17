@@ -126,8 +126,7 @@ class ComparisonPage extends StatelessWidget {
                                     child: SelectableText(
                                       '${state.previousBusinessDetails.name} vs. ${state.currentBusinessDetails!.name}',
                                       style: const TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 255, 255, 255),
+                                        color: Colors.white,
                                         fontSize: 48,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -140,11 +139,11 @@ class ComparisonPage extends StatelessWidget {
                                         child: Container(
                                           width: double.infinity,
                                           padding: const EdgeInsets.all(16.0),
-                                          decoration: BoxDecoration(
-                                              color:
-                                                  Colors.white.withOpacity(0.2),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(12.0))),
+                                          // decoration: BoxDecoration(
+                                          //     color:
+                                          //         Colors.white.withOpacity(0.2),
+                                          //     borderRadius: BorderRadius.all(
+                                          //         Radius.circular(12.0))),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -152,8 +151,7 @@ class ComparisonPage extends StatelessWidget {
                                               SelectableText(
                                                 "${state.previousBusinessDetails.name}",
                                                 style: const TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 255, 255, 255),
+                                                  color: Colors.white,
                                                   fontSize: 48,
                                                   fontWeight: FontWeight.bold,
                                                 ),
@@ -162,9 +160,12 @@ class ComparisonPage extends StatelessWidget {
                                               SelectableText(
                                                   state
                                                       .previousBusinessAnalysis,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge),
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  )),
                                             ],
                                           ),
                                         ),
@@ -216,7 +217,8 @@ class ComparisonPage extends StatelessWidget {
                                                 .textTheme
                                                 .titleLarge),
                                         const SizedBox(height: 8.0),
-                                        SelectableText(state.comparisonAnalysis!,
+                                        SelectableText(
+                                            state.comparisonAnalysis!,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge),

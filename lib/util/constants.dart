@@ -1,7 +1,7 @@
 import 'package:latlong2/latlong.dart';
 
 const String mapsApiKey = "AIzaSyDgjWPTfYPcEWLtHQMF9Sy0yr68EtSD63w";
-const String rapidApiKey = "bd255c3ab9mshbe15c1e35122e82p11fd17jsn346bab4d1531";
+const String rapidApiKey = "0a52f29efamsh69c4eefea88486bp123a84jsn19475d0ff25f";
 const String sampleBusinessName = "Business Name";
 const String loremImpsum = """
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id cursus augue, sit amet feugiat ligula. In tincidunt lacus at maximus vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus tristique ut augue in suscipit. Phasellus odio nibh, eleifend in nulla non, tincidunt facilisis dui. Aliquam scelerisque urna elementum, aliquet dolor sed, mollis purus. Phasellus sagittis lectus sit amet nisl venenatis, id cursus felis lacinia. Curabitur interdum ut odio non molestie. Vivamus pharetra, eros eu ultricies egestas, erat mi tempor ex, eget egestas neque mi vulputate sem. In finibus rutrum nisi sit amet pellentesque. Phasellus est tellus, sagittis ultricies egestas sed, blandit ac neque. Pellentesque fermentum blandit urna. Nam ornare, metus at aliquam lacinia, odio lectus laoreet libero, ac blandit urna mauris id magna. Pellentesque vel nisi tristique, fringilla lacus sit amet, ullamcorper nibh. Phasellus a massa tristique, tempor neque eu, venenatis libero.
