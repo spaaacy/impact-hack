@@ -29,18 +29,6 @@ class ComparisonPage extends StatelessWidget {
                 "Back to Business Analysis",
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-              Spacer(),
-              Expanded(
-                child: Center(
-                  child: Text(
-                    "Competitor Analysis Page",
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ),
-              ),
-              Spacer(
-                flex: 2,
-              ),
             ],
           ),
         ),
@@ -120,31 +108,39 @@ class ComparisonPage extends StatelessWidget {
                                 'Failed to fetch description');
                           } else {
                             return ListView(
-                                padding: const EdgeInsets.all(24.0),
+                                padding: const EdgeInsetsDirectional.all(20),
                                 children: [
-                                  Center(
-                                    child: SelectableText(
-                                      '${state.previousBusinessDetails.name} vs. ${state.currentBusinessDetails!.name}',
-                                      style: const TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 255, 255, 255),
-                                        fontSize: 48,
-                                        fontWeight: FontWeight.bold,
+                                  Padding(
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 40),
+                                    child: Center(
+                                      child: Column(
+                                        children: [
+                                          SelectableText(
+                                            '${state.previousBusinessDetails.name} vs. ${state.currentBusinessDetails!.name}',
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 54,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          const SelectableText(
+                                            "A comprehensive evaluation of both businesses",
+                                            style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 218, 218, 218),
+                                                fontSize: 18),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(height: 30.0),
                                   Row(
                                     children: [
                                       Expanded(
                                         child: Container(
                                           width: double.infinity,
                                           padding: const EdgeInsets.all(16.0),
-                                          decoration: BoxDecoration(
-                                              color:
-                                                  Colors.white.withOpacity(0.2),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(12.0))),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -152,74 +148,85 @@ class ComparisonPage extends StatelessWidget {
                                               SelectableText(
                                                 "${state.previousBusinessDetails.name}",
                                                 style: const TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 255, 255, 255),
-                                                  fontSize: 48,
+                                                  color: Colors.white,
+                                                  fontSize: 38,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                              const SizedBox(height: 8.0),
+                                              const SizedBox(height: 12.0),
                                               SelectableText(
                                                   state
                                                       .previousBusinessAnalysis,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge),
+                                                  textAlign: TextAlign.justify,
+                                                  style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  )),
                                             ],
                                           ),
                                         ),
                                       ),
-                                      const SizedBox(width: 8.0),
+                                      const SizedBox(width: 16.0),
                                       Expanded(
                                         child: Container(
                                           width: double.infinity,
                                           padding: const EdgeInsets.all(16.0),
-                                          decoration: const BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(12.0))),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
                                               SelectableText(
-                                                  "${state.currentBusinessDetails!.name}",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .titleLarge),
-                                              const SizedBox(height: 8.0),
+                                                "${state.currentBusinessDetails!.name}",
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 38,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 12.0),
                                               SelectableText(
                                                   state
                                                       .currentBusinessAnalysis!,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge),
+                                                  textAlign: TextAlign.justify,
+                                                  style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  )),
                                             ],
                                           ),
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
-                                  const SizedBox(height: 12.0),
+                                  const SizedBox(height: 30),
                                   Container(
+                                    width: double.infinity,
                                     padding: const EdgeInsets.all(16.0),
-                                    decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(12.0))),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      children: [
-                                        SelectableText("Final Comparison",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleLarge),
-                                        const SizedBox(height: 8.0),
-                                        SelectableText(state.comparisonAnalysis!,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyLarge),
+                                      children: <Widget>[
+                                        const SelectableText(
+                                          "Final Comparison",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 38,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 12.0),
+                                        SelectableText(
+                                            state.comparisonAnalysis!,
+                                            textAlign: TextAlign.justify,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.normal,
+                                            )),
                                       ],
                                     ),
                                   ),
