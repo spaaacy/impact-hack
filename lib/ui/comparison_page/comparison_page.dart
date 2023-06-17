@@ -25,15 +25,22 @@ class ComparisonPage extends StatelessWidget {
           ),
           title: Row(
             children: [
-              Text("Back to Business Analysis",
-                  style: Theme.of(context).textTheme.titleMedium),
-              const Spacer(),
-              Center(
-                  child: Text("Competitor Analysis Page",
-                      style: Theme.of(context).textTheme.titleMedium)),
-              const Spacer(
+              Text(
+                "Back to Business Analysis",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              Spacer(),
+              Expanded(
+                child: Center(
+                  child: Text(
+                    "Competitor Analysis Page",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ),
+              ),
+              Spacer(
                 flex: 2,
-              )
+              ),
             ],
           ),
         ),
@@ -115,21 +122,27 @@ class ComparisonPage extends StatelessWidget {
                             return ListView(
                                 padding: const EdgeInsets.all(24.0),
                                 children: [
-                                  SelectableText(
-                                    '${state.previousBusinessDetails.name} vs. ${state.currentBusinessDetails!.name}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineLarge,
+                                  Center(
+                                    child: SelectableText(
+                                      '${state.previousBusinessDetails.name} vs. ${state.currentBusinessDetails!.name}',
+                                      style: const TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                        fontSize: 48,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
-                                  const SizedBox(height: 12.0),
+                                  const SizedBox(height: 30.0),
                                   Row(
                                     children: [
                                       Expanded(
                                         child: Container(
                                           width: double.infinity,
                                           padding: const EdgeInsets.all(16.0),
-                                          decoration: const BoxDecoration(
-                                              color: Colors.white,
+                                          decoration: BoxDecoration(
+                                              color:
+                                                  Colors.white.withOpacity(0.2),
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(12.0))),
                                           child: Column(
@@ -137,10 +150,14 @@ class ComparisonPage extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               SelectableText(
-                                                  "${state.previousBusinessDetails.name}",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .titleLarge),
+                                                "${state.previousBusinessDetails.name}",
+                                                style: const TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 255, 255, 255),
+                                                  fontSize: 48,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
                                               const SizedBox(height: 8.0),
                                               SelectableText(
                                                   state

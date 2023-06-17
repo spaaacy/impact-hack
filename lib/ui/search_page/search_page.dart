@@ -31,7 +31,8 @@ class SearchPage extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-          title: Text("Search", style: Theme.of(context).textTheme.titleMedium),
+          title: Text("Back to Home",
+              style: Theme.of(context).textTheme.titleMedium),
         ),
         backgroundColor: Color.fromARGB(255, 214, 184, 191),
         body: Padding(
@@ -45,7 +46,7 @@ class SearchPage extends StatelessWidget {
               image: DecorationImage(
                 fit: BoxFit.fill,
                 image: Image.asset(
-                  'assets/images/5.jpg',
+                  'assets/images/12.png',
                 ).image,
               ),
             ),
@@ -57,7 +58,10 @@ class SearchPage extends StatelessWidget {
                 children: [
                   const Text(
                     "Search for your business",
-                    style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 60,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                   const SizedBox(
                     height: 20,
@@ -89,8 +93,10 @@ class SearchPage extends StatelessWidget {
                           final results = <Suggestion>[];
                           results.add(Suggestion(
                               googleId: '0x31cc498ea887c2d7:0x90dfd956df69d7ba',
-                              description: 'Cititel Mid Valley, Lingkaran Syed Putra, Mid Valley City'));
-                          final suggestions = await _businessService.fetchSuggestions(input: input, lang: lang);
+                              description:
+                                  'Cititel Mid Valley, Lingkaran Syed Putra, Mid Valley City'));
+                          final suggestions = await _businessService
+                              .fetchSuggestions(input: input, lang: lang);
                           for (var element in suggestions) {
                             results.add(element);
                           }
@@ -99,14 +105,17 @@ class SearchPage extends StatelessWidget {
                           final results = <Suggestion>[];
                           results.add(Suggestion(
                               googleId: '0x31cc362411d7ed65:0x991cf8b34b238fd4',
-                              description: 'Hotel Pudu Plaza, Jalan 1/77C, Pudu'));
-                          final suggestions = await _businessService.fetchSuggestions(input: input, lang: lang);
+                              description:
+                                  'Hotel Pudu Plaza, Jalan 1/77C, Pudu'));
+                          final suggestions = await _businessService
+                              .fetchSuggestions(input: input, lang: lang);
                           for (var element in suggestions) {
                             results.add(element);
                           }
                           return results.take(8);
                         } else {
-                          final results = await _businessService.fetchSuggestions(input: input, lang: lang);
+                          final results = await _businessService
+                              .fetchSuggestions(input: input, lang: lang);
                           return results.take(8);
                         }
                       },
@@ -114,7 +123,8 @@ class SearchPage extends StatelessWidget {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            trimDescription(suggestion.description).capitalize(),
+                            trimDescription(suggestion.description)
+                                .capitalize(),
                             style: const TextStyle(fontSize: 16.0),
                           ),
                         );
@@ -148,7 +158,9 @@ class SearchPage extends StatelessWidget {
                                   })
                               : null,
                           border: const OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(12.0)), borderSide: BorderSide.none),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12.0)),
+                              borderSide: BorderSide.none),
                           hintText: "Where is your location?",
                           filled: true,
                           fillColor: Colors.white,
@@ -162,7 +174,12 @@ class SearchPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        const SelectableText("Monthly Analysis"),
+                        const Text(
+                          "Monthly Analysis",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white54),
+                        ),
                         const SizedBox(
                           width: 12.0,
                         ),
