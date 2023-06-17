@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:impact_hack/ui/business_detail/business_detail_page.dart';
+import 'package:impact_hack/ui/business_detail/business_detail_page_state.dart';
 import 'package:impact_hack/ui/comparison_page/comparison_page.dart';
 import 'package:impact_hack/ui/comparison_page/comparison_page_state.dart';
 import 'package:impact_hack/ui/home_page/home_page.dart';
@@ -25,7 +27,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: ChangeNotifierProvider(
-          create: (context) => HomePageState(context), child: const HomePage()),
+          // create: (context) => HomePageState(context), child: const HomePage()),
+          create: (context) => BusinessDetailPageState(
+              context, "0x31cdb4a9c681855f:0xd8b22b163e8162ff"),
+          child: const BusinessDetailPage()),
     );
   }
 }
