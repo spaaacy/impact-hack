@@ -15,15 +15,17 @@ class MonthlyComparisonState extends ChangeNotifier {
 
   Future<ChatCompletionResponse?>? gptResponseLastMonth;
   Future<ChatCompletionResponse?>? gptResponseThisMonth;
+  Future<ChatCompletionResponse?>? comparisonGptResponse;
 
   bool firstLoaded = false;
-  bool secondLoaded = false;
+  bool comparisonLoaded = false;
 
   String lastMonthString = getMonthString(DateTime.now().month-2);
   String thisMonthString = getMonthString(DateTime.now().month-1);
 
   String? businessAnalysisThisMonth;
   String? businessAnalysisLastMonth;
+  String? comparisonAnalysis;
 
   BusinessDetails? businessDetails;
 
@@ -49,6 +51,32 @@ class MonthlyComparisonState extends ChangeNotifier {
         fetchBusinessAnalysis(businessDetails: details, businessReviews: businessReviewsLastMonth!, thisMonth: false);
       });
     });
+  }
+
+  Future<void> fetchComparisonAnalysis() async {
+    String compiledDetails = "$lastMonthString:\n\n$businessAnalysisLastMonth";
+    compiledDetails = "$compiledDetails\n\n$thisMonthString\n\n$businessAnalysisThisMonth";
+
+    final messages = [
+      ChatMessage(role: 'system', content: compiledDetails),
+      ChatMessage(
+          role: 'user',
+          content:
+          "Identify and discuss factors that have improved and factors that factors that worsened between the two months. Keep the reply greater than 300 words."),
+    ];
+
+    const temperature = 1.0;
+
+    comparisonGptResponse = openAiService.sendChatCompletionRequest(messages, temperature).then((response) {
+      comparisonAnalysis = response.choices.first.message.content;
+      comparisonLoaded = true;
+      notifyListeners();
+    }).catchError((error) {
+      comparisonAnalysis = 'Failed to fetch description';
+      comparisonLoaded = true;
+      notifyListeners();
+    });
+    notifyListeners();
   }
 
   Future<void> fetchBusinessAnalysis(
@@ -81,17 +109,15 @@ class MonthlyComparisonState extends ChangeNotifier {
 
     if (thisMonth) {
       gptResponseThisMonth = openAiService.sendChatCompletionRequest(messages, temperature).then((response) {
-
         businessAnalysisThisMonth = response.choices.first.message.content;
         if (firstLoaded) {
-          secondLoaded = true;
+          fetchComparisonAnalysis();
         } else {
           firstLoaded = true;
         }
-        notifyListeners();
-
       }).catchError((error) {
         businessAnalysisThisMonth = 'Failed to fetch description';
+        comparisonLoaded = true;
         notifyListeners();
       });
       notifyListeners();
@@ -100,20 +126,18 @@ class MonthlyComparisonState extends ChangeNotifier {
 
         businessAnalysisLastMonth = response.choices.first.message.content;
         if (firstLoaded) {
-          secondLoaded = true;
+          fetchComparisonAnalysis();
         } else {
           firstLoaded = true;
         }
-        notifyListeners();
-
       }).catchError((error) {
         businessAnalysisLastMonth = 'Failed to fetch description';
+        comparisonLoaded = true;
         notifyListeners();
       });
       notifyListeners();
-
-
     }
+
 
 
   }

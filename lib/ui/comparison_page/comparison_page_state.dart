@@ -62,7 +62,9 @@ class ComparisonPageState extends ChangeNotifier {
           firstBusinessAnalysis: previousBusinessAnalysis, secondBusinessAnalysis: currentBusinessAnalysis!);
     }).catchError((error) {
       currentBusinessAnalysis = 'Failed to fetch description';
+      notifyListeners();
     });
+    notifyListeners();
   }
 
   Future<void> fetchComparisonAnalysis(
