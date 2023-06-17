@@ -7,6 +7,8 @@ import '../../services/business_service.dart';
 import '../../util/helpers.dart';
 import '../business_detail/business_detail_page.dart';
 import '../business_detail/business_detail_page_state.dart';
+import '../monthly_comparison/monthly_comparison.dart';
+import '../monthly_comparison/monthly_comparison_state.dart';
 
 class SearchPage extends StatelessWidget {
   final _businessService = BusinessService();
@@ -16,7 +18,7 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String lang = Localizations.localeOf(context).languageCode;
-    final state = context.read<SearchPageState>();
+    final state = context.watch<SearchPageState>();
 
     return Scaffold(
         appBar: AppBar(
@@ -67,7 +69,7 @@ class SearchPage extends StatelessWidget {
                           color: Colors.black12.withOpacity(0.3),
                           spreadRadius: 5,
                           blurRadius: 10,
-                          offset: Offset(7, 7),
+                          offset: const Offset(7, 7),
                         ),
                       ],
                     ),
@@ -95,10 +97,18 @@ class SearchPage extends StatelessWidget {
                         );
                       },
                       onSuggestionSelected: (suggestion) async {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ChangeNotifierProvider(
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          if (state.monthly) {
+                            return ChangeNotifierProvider(
+                                create: (context) => MonthlyComparisonState(context, suggestion.googleId),
+                                child: const MonthlyComparison());
+                          } else {
+                            return ChangeNotifierProvider(
                                 create: (context) => BusinessDetailPageState(context, suggestion.googleId),
-                                child: const BusinessDetailPage())));
+                                child: const BusinessDetailPage());
+                          }
+
+                        }));
                       },
                       textFieldConfiguration: TextFieldConfiguration(
                         controller: state.searchController,
@@ -120,7 +130,20 @@ class SearchPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )
+                  ),
+                  const SizedBox(height: 16.0),
+                  Row(
+                    children: [
+                      const SelectableText("Monthly Analysis"),
+                      const SizedBox(
+                        width: 12.0,
+                      ),
+                      Switch(
+                        value: state.monthly,
+                        onChanged: (value) => state.monthly = value,
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

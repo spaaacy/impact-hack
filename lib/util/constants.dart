@@ -1,7 +1,7 @@
 import 'package:latlong2/latlong.dart';
 
 const String mapsApiKey = "AIzaSyDgjWPTfYPcEWLtHQMF9Sy0yr68EtSD63w";
-const String rapidApiKey = "1d3588782amshd39f2396321144ep1b44dajsnbe2d483a62b3  ";
+const String rapidApiKey = "53ac67ccfemshd65947b47a944c9p172b16jsn7560e9765cdc";
 const LatLng defaultLatLng = LatLng(3.140853, 101.693207);
 const String sampleBusinessName = "Business Name";
 const String loremImpsum =
