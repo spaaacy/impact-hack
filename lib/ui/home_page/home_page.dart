@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:impact_hack/ui/search_page/search_page.dart';
 import 'package:impact_hack/ui/search_page/search_page_state.dart';
-import 'package:impact_hack/util/constants.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
