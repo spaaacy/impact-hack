@@ -26,9 +26,10 @@ class LocationSearch extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-          title: Text("Search", style: Theme.of(context).textTheme.titleMedium),
+          title: Text("Back to Home",
+              style: Theme.of(context).textTheme.titleMedium),
         ),
-        backgroundColor: const Color.fromARGB(255, 214, 184, 191),
+        backgroundColor: Color.fromARGB(255, 214, 206, 184),
         body: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(40, 0, 40, 40),
           child: Container(
@@ -40,7 +41,7 @@ class LocationSearch extends StatelessWidget {
               image: DecorationImage(
                 fit: BoxFit.fill,
                 image: Image.asset(
-                  'assets/images/5.jpg',
+                  'assets/images/kl-skyline-1.jpg',
                 ).image,
               ),
             ),
@@ -81,7 +82,9 @@ class LocationSearch extends StatelessWidget {
                                 })
                             : null,
                         border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(12.0)), borderSide: BorderSide.none),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12.0)),
+                            borderSide: BorderSide.none),
                         hintText: "Where is your location?",
                         filled: true,
                         fillColor: Colors.white,
@@ -97,14 +100,14 @@ class LocationSearch extends StatelessWidget {
                       children: [
                         ElevatedButton(
                             onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(builder: (context) {
-                                  return ChangeNotifierProvider(
-                                    create: (context) => LocationDetailState(context, ''), // TODO: Remove string
-                                    child: const LocationDetail(),
-                                  );
-                                })
-                              );
+                              Navigator.of(context)
+                                  .push(MaterialPageRoute(builder: (context) {
+                                return ChangeNotifierProvider(
+                                  create: (context) => LocationDetailState(
+                                      context, ''), // TODO: Remove string
+                                  child: const LocationDetail(),
+                                );
+                              }));
                             },
                             child: const Row(
                               crossAxisAlignment: CrossAxisAlignment.center,

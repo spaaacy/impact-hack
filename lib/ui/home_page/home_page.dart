@@ -162,7 +162,7 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 199, 184, 214),
+        backgroundColor: Color.fromARGB(255, 184, 208, 214),
         body: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(40, 0, 40, 40),
           child: Container(
@@ -174,7 +174,7 @@ class HomePage extends StatelessWidget {
               image: DecorationImage(
                 fit: BoxFit.fill,
                 image: Image.asset(
-                  'assets/images/5.jpg',
+                  'assets/images/wavey-inverted.png',
                 ).image,
               ),
             ),
@@ -216,7 +216,7 @@ class HomePage extends StatelessWidget {
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:
-                                    Color.fromARGB(255, 66, 44, 146),
+                                    Color.fromARGB(255, 9, 54, 202),
                                 foregroundColor: Colors.white,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     26, 30, 34, 30),
@@ -247,7 +247,7 @@ class HomePage extends StatelessWidget {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.white,
                                 foregroundColor:
-                                    Color.fromARGB(255, 66, 44, 146),
+                                    Color.fromARGB(255, 9, 54, 202),
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 40, vertical: 30),
                                 shape: RoundedRectangleBorder(
@@ -262,34 +262,43 @@ class HomePage extends StatelessWidget {
                         const SizedBox(
                           height: 75,
                         ),
-                        const Text(
-                          "Proudly powered by lots and lemons... and OpenAI API:",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.normal,
+                        const Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
+                          child: Text(
+                            "Proudly powered by lots and lemons... and OpenAI API:",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
                           ),
                         ),
                         Row(
                           children: [
                             Container(
-                              width: 200,
-                              height: 200,
-                              child:
-                                  Image.asset('assets/images/chatgpt-logo.png'),
+                              width: 210,
+                              height: 75,
+                              child: Image.asset(
+                                'assets/images/chatgpt-logo.png',
+                                fit: BoxFit.fill,
+                              ),
                             ),
                             SizedBox(width: 16),
                             Container(
                               width: 200,
-                              height: 200,
-                              child:
-                                  Image.asset('assets/images/lemons-logo.png'),
+                              height: 75,
+                              child: Image.asset(
+                                'assets/images/lemons-logo.png',
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                            SizedBox(width: 16),
+                            SizedBox(width: 26),
                             Container(
                               width: 200,
-                              height: 200,
-                              child:
-                                  Image.asset('assets/images/juicer-logo.png'),
+                              height: 75,
+                              child: Image.asset(
+                                'assets/images/juicer-logo.png',
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ],
                         ),
