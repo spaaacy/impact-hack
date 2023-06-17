@@ -120,14 +120,17 @@ class SearchPage extends StatelessWidget {
                         );
                       },
                       onSuggestionSelected: (suggestion) async {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           if (state.monthly) {
                             return ChangeNotifierProvider(
-                                create: (context) => MonthlyComparisonState(context, suggestion.googleId),
+                                create: (context) => MonthlyComparisonState(
+                                    context, suggestion.googleId),
                                 child: const MonthlyComparison());
                           } else {
                             return ChangeNotifierProvider(
-                                create: (context) => BusinessDetailPageState(context, suggestion.googleId),
+                                create: (context) => BusinessDetailPageState(
+                                    context, suggestion.googleId),
                                 child: const BusinessDetailPage());
                           }
                         }));
@@ -153,18 +156,22 @@ class SearchPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16.0),
-                  Row(
-                    children: [
-                      const SelectableText("Monthly Analysis"),
-                      const SizedBox(
-                        width: 12.0,
-                      ),
-                      Switch(
-                        value: state.monthly,
-                        onChanged: (value) => state.monthly = value,
-                      ),
-                    ],
+                  const SizedBox(height: 24.0),
+                  SizedBox(
+                    width: 600,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const SelectableText("Monthly Analysis"),
+                        const SizedBox(
+                          width: 12.0,
+                        ),
+                        Switch(
+                          value: state.monthly,
+                          onChanged: (value) => state.monthly = value,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
