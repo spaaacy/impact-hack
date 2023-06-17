@@ -12,7 +12,8 @@ class ComparisonPageState extends ChangeNotifier {
   final String googleId;
   final OpenAIService openAiService = OpenAIService();
 
-  Future<ChatCompletionResponse?>? gptResponse;
+  Future<ChatCompletionResponse?>? analysisGptResponse;
+  Future<ChatCompletionResponse?>? comparisonGptResponse;
 
   final _businessService = BusinessService();
 
@@ -23,6 +24,8 @@ class ComparisonPageState extends ChangeNotifier {
   String? currentBusinessAnalysis;
   BusinessDetails? currentBusinessDetails;
   List<Review>? currentBusinessReviews;
+
+  String? comparisonAnalysis;
 
   ComparisonPageState(this.context, this.googleId, this.previousBusinessAnalysis, this.previousBusinessDetails,
       this.previousBusinessReviews) {
@@ -41,11 +44,7 @@ class ComparisonPageState extends ChangeNotifier {
 
   Future<void> fetchBusinessAnalysis(
       {required BusinessDetails businessDetails, required List<Review> businessReviews}) async {
-    final compiledDetails = """
-        $businessDetails
-
-        $businessReviews
-      """;
+    final compiledDetails = "$businessDetails\n\n$businessReviews";
 
     final messages = [
       ChatMessage(role: 'system', content: compiledDetails),
@@ -57,11 +56,37 @@ class ComparisonPageState extends ChangeNotifier {
 
     const temperature = 1.0;
 
-    gptResponse = openAiService.sendChatCompletionRequest(messages, temperature).then((response) {
+    analysisGptResponse = openAiService.sendChatCompletionRequest(messages, temperature).then((response) {
       currentBusinessAnalysis = response.choices.first.message.content;
-      notifyListeners();
+      fetchComparisonAnalysis(
+          firstBusinessAnalysis: previousBusinessAnalysis, secondBusinessAnalysis: currentBusinessAnalysis!);
     }).catchError((error) {
       currentBusinessAnalysis = 'Failed to fetch description';
+      notifyListeners();
+    });
+    notifyListeners();
+  }
+
+  Future<void> fetchComparisonAnalysis(
+      {required String firstBusinessAnalysis, required String secondBusinessAnalysis}) async {
+    String compiledDetails = "Here are details about two hotels:\n\nHotel 1:";
+    compiledDetails = "$compiledDetails\n\n$firstBusinessAnalysis\n\nHotel 2:\n\n$secondBusinessAnalysis";
+
+    final messages = [
+      ChatMessage(role: 'system', content: compiledDetails),
+      ChatMessage(
+          role: 'user',
+          content:
+              "Compare and contrast the positive aspects, negative aspects, and areas for improvement for both hotels. Keep the reply greater than 300 words"),
+    ];
+
+    const temperature = 1.0;
+
+    comparisonGptResponse = openAiService.sendChatCompletionRequest(messages, temperature).then((response) {
+      comparisonAnalysis = response.choices.first.message.content;
+      notifyListeners();
+    }).catchError((error) {
+      comparisonAnalysis = 'Failed to fetch description';
       notifyListeners();
     });
     notifyListeners();

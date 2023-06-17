@@ -18,7 +18,7 @@ class ComparisonPage extends StatelessWidget {
           elevation: 0,
           toolbarHeight: 70, // Remove the shadow
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -44,7 +44,7 @@ class ComparisonPage extends StatelessWidget {
             ],
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 214, 184, 191),
+        backgroundColor: const Color.fromARGB(255, 214, 184, 191),
         body: Center(
           child: Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(40, 0, 40, 40),
@@ -53,7 +53,7 @@ class ComparisonPage extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 1,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                borderRadius: const BorderRadius.all(Radius.circular(12.0)),
                 image: DecorationImage(
                   fit: BoxFit.fill,
                   image: Image.asset(
@@ -65,7 +65,7 @@ class ComparisonPage extends StatelessWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(32.0),
-                child: state.gptResponse == null
+                child: state.comparisonGptResponse == null
                     ? Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -89,7 +89,7 @@ class ComparisonPage extends StatelessWidget {
                         ),
                       )
                     : FutureBuilder(
-                        future: state.gptResponse,
+                        future: state.comparisonGptResponse,
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -216,7 +216,7 @@ class ComparisonPage extends StatelessWidget {
                                                 .textTheme
                                                 .titleLarge),
                                         const SizedBox(height: 8.0),
-                                        SelectableText(loremImpsum,
+                                        SelectableText(state.comparisonAnalysis!,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge),
