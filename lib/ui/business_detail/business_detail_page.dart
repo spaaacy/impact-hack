@@ -184,7 +184,8 @@ class BusinessDetailPage extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(12.0)),
               image: DecorationImage(
-                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.darken),
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.5), BlendMode.darken),
                 fit: BoxFit.fill,
                 image: Image.asset(
                   'assets/images/night-sky.jpg',
@@ -201,7 +202,7 @@ class BusinessDetailPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            "Generating your curated response",
+                            "Retrieving business data",
                             style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
