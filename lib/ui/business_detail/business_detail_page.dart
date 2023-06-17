@@ -32,7 +32,10 @@ class BusinessDetailPage extends StatelessWidget {
         ),
         title: Row(
           children: [
-            Text("Business Analysis",
+            Text("Back to Search Page",
+                style: Theme.of(context).textTheme.titleMedium),
+            Spacer(),
+            Text("Competitor Analysis Page",
                 style: Theme.of(context).textTheme.titleMedium),
             Spacer(),
             ElevatedButton.icon(
@@ -137,7 +140,7 @@ class BusinessDetailPage extends StatelessWidget {
                 textStyle: TextStyle(fontSize: 16),
               ),
             ),
-            SizedBox(width: 30.0)
+            //sSizedBox(width: 30.0)
           ],
         ),
       ),
@@ -149,16 +152,16 @@ class BusinessDetailPage extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 1,
             decoration: BoxDecoration(
-              // color: Colors.white,
-              // borderRadius: BorderRadius.all(Radius.circular(12.0)),
-              // image: DecorationImage(
-              //   fit: BoxFit.fill,
-              //   image: Image.asset(
-              //     'assets/images/5.jpg',
-              //   ).image,
-              // ),
-              color: Color.fromARGB(255, 179, 152, 158),
+              color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: Image.asset(
+                  'assets/images/cp-bg-2.png',
+                ).image,
+              ),
+              // color: Color.fromARGB(255, 179, 152, 158),
+              // borderRadius: BorderRadius.all(Radius.circular(12.0)),
             ),
             child: Padding(
               padding: const EdgeInsets.all(32.0),
@@ -220,55 +223,50 @@ class BusinessDetailPage extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                const Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10, 0, 0, 0),
                                   child: Text(
                                     "Your comprehensive business analysis for: ",
                                     style: TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.normal,
                                     ),
                                   ),
                                 ),
                                 Text(
                                   '${state.businessDetails!.name}',
                                   style: const TextStyle(
-                                    shadows: <Shadow>[
-                                      Shadow(
-                                        offset: Offset(5.0, 5.0),
-                                        blurRadius: 8.0,
-                                        color: Color.fromARGB(255, 0, 0, 0),
-                                      ),
-                                    ],
-                                    color: Colors.white,
+                                    color: Color.fromARGB(255, 255, 255, 255),
                                     fontSize: 48,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 const SizedBox(height: 32),
-                                SingleChildScrollView(
-                                  child: Container(
-                                    width: double.infinity,
-                                    padding: const EdgeInsets.all(16.0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(12.0)),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: SelectableText(
-                                            state.businessAnalysis!,
-                                            style: TextStyle(fontSize: 20),
-                                          ),
+                                Container(
+                                  width: double.infinity,
+                                  padding: const EdgeInsets.all(16.0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.2),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12.0)),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: SelectableText(
+                                          state.businessAnalysis!,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
