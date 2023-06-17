@@ -14,7 +14,7 @@ class MonthlyComparison extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(),
-        body: state.secondLoaded == false
+        body: state.comparisonLoaded == false
             ? const Center(child: CircularProgressIndicator())
             : ListView(padding: const EdgeInsets.all(24.0), children: [
                 SelectableText(
@@ -71,7 +71,7 @@ class MonthlyComparison extends StatelessWidget {
                     children: [
                       SelectableText("Final Comparison", style: Theme.of(context).textTheme.titleLarge),
                       const SizedBox(height: 8.0),
-                      SelectableText(loremImpsum, style: Theme.of(context).textTheme.bodyLarge),
+                      SelectableText(state.comparisonAnalysis!, style: Theme.of(context).textTheme.bodyLarge),
                     ],
                   ),
                 ),
