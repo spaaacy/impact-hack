@@ -25,15 +25,22 @@ class ComparisonPage extends StatelessWidget {
           ),
           title: Row(
             children: [
-              Text("Back to Business Analysis",
-                  style: Theme.of(context).textTheme.titleMedium),
+              Text(
+                "Back to Business Analysis",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
               Spacer(),
-              Center(
-                  child: Text("Competitor Analysis Page",
-                      style: Theme.of(context).textTheme.titleMedium)),
+              Expanded(
+                child: Center(
+                  child: Text(
+                    "Competitor Analysis Page",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ),
+              ),
               Spacer(
                 flex: 2,
-              )
+              ),
             ],
           ),
         ),
