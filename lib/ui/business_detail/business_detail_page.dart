@@ -184,9 +184,10 @@ class BusinessDetailPage extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(12.0)),
               image: DecorationImage(
+                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.darken),
                 fit: BoxFit.fill,
                 image: Image.asset(
-                  'assets/images/cp-bg-2.png',
+                  'assets/images/night-sky.jpg',
                 ).image,
               ),
               // color: Color.fromARGB(255, 179, 152, 158),

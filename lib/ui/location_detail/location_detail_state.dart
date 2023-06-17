@@ -16,10 +16,12 @@ class LocationDetailState extends ChangeNotifier {
 
   Future<ChatCompletionResponse?>? gptResponse;
 
+  late String locationName;
   String? locationAnalysis;
   List<BusinessDetails>? businessesNearby;
 
   LocationDetailState(this.context, this.input) : openAiService = OpenAIService() {
+    locationName = input.capitalize();
     searchController.addListener(() => notifyListeners());
     generateAnalysis();
   }
@@ -50,7 +52,7 @@ class LocationDetailState extends ChangeNotifier {
       ChatMessage(
           role: 'user',
           content:
-              'Compile and use the above information to describe the positive aspects, negative aspects, and areas for improvement for hotels in that area, without naming specific hotels. Keep the reply within 500 words.'),
+              'Compile and use the above information to describe the positive aspects, negative aspects, and areas for improvement for hotels in the $locationName area, without naming specific hotels. Keep the reply within 500 words.'),
     ];
 
     const temperature = 1.0;
