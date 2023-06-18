@@ -63,8 +63,6 @@ class LocationDetail extends StatelessWidget {
                   'assets/images/night-sky.jpg',
                 ).image,
               ),
-              // color: Color.fromARGB(255, 179, 152, 158),
-              // borderRadius: BorderRadius.all(Radius.circular(12.0)),
             ),
             child: Padding(
               padding: const EdgeInsets.all(32.0),
@@ -162,6 +160,29 @@ class LocationDetail extends StatelessWidget {
                                         padding: const EdgeInsets.all(8.0),
                                         child: SelectableText(
                                           state.locationAnalysis!,
+                                          textAlign: TextAlign.justify,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 16.0),
+                                Container(
+                                  width: MediaQuery.of(context).size.width / 2,
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: SelectableText(
+                                          'Hotels used: ${state.businessesNearbyNames}',
                                           textAlign: TextAlign.justify,
                                           style: const TextStyle(
                                             color: Colors.white,

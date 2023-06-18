@@ -9,7 +9,7 @@ class OpenAIService {
   static const String apiEndpoint =
       'https://api.openai.com/v1/chat/completions';
   static const String apiKey =
-      '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';
+      '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';
 
   Future<ChatCompletionResponse> sendChatCompletionRequest(
       List<ChatMessage> messages, double temperature) async {

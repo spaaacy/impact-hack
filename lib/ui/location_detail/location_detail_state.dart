@@ -19,6 +19,8 @@ class LocationDetailState extends ChangeNotifier {
   late String locationName;
   String? locationAnalysis;
   List<BusinessDetails>? businessesNearby;
+  String businessesNearbyNames = '';
+
 
   LocationDetailState(this.context, this.input) : openAiService = OpenAIService() {
     locationName = input.capitalize();
@@ -36,6 +38,13 @@ class LocationDetailState extends ChangeNotifier {
     businessesNearby = await _businessService.fetchNearbyBusinesses(input: "hotel $input", lang: 'en', limit: 4);
 
     for (var business in businessesNearby!) {
+
+      if (businessesNearbyNames.isEmpty) {
+        businessesNearbyNames = '${business.name}';
+      } else {
+        businessesNearbyNames = '$businessesNearbyNames, ${business.name}';
+      }
+
       final businessReviews =
           await _businessService.fetchBusinessReviews(businessId: business.businessId!, lang: 'en', limit: 5);
       String compiledDetails = compileBusinessDetailsAndReviews(business, businessReviews);
