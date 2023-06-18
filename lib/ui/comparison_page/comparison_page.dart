@@ -30,7 +30,7 @@ class ComparisonPage extends StatelessWidget {
               Container(
                 height: 60,
                 child: Image.asset(
-                  'assets/images/lemons-logo.png',
+                  'assets/images/logo.png',
                   fit: BoxFit.fill,
                 ),
               ),
@@ -143,7 +143,8 @@ class ComparisonPage extends StatelessWidget {
                                     ),
                                   ),
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Expanded(
                                         child: Container(
