@@ -126,20 +126,20 @@ class LocationDetail extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10, 0, 0, 0),
                                   child: Column(
                                     children: [
                                       Text(
-                                        'LOCATION_NAME_PLACEHOLDER',
-                                        style: TextStyle(
+                                        "Hotels in ${state.locationName}",
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 48,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                      Text(
+                                      const Text(
                                         "A comprehensive locational analysis",
                                         style: TextStyle(
                                           color: Colors.white,

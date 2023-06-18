@@ -148,16 +148,6 @@ class LocationSearch extends StatelessWidget {
                                 ),
                               ],
                             ))
-                        // child: const Row(
-                        //   crossAxisAlignment: CrossAxisAlignment.center,
-                        //   children: [
-                        //     Icon(Icons.search),
-                        //     SizedBox(
-                        //       width: 4.0,
-                        //     ),
-                        //     Text('Search'),
-                        //   ],
-                        // ))
                       ],
                     ),
                   )

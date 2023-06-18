@@ -109,6 +109,7 @@ class MonthlyComparison extends StatelessWidget {
                           ),
                         ),
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Expanded(
                               child: Container(

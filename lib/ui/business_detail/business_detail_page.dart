@@ -79,7 +79,7 @@ class BusinessDetailPage extends StatelessWidget {
                               elevation: 4.0,
                             ),
                             suggestionsCallback: (input) async {
-                              if (input.toLowerCase() == 'mid valley') {
+                              if (input.toLowerCase() == 'cititel') {
                                 final results = <Suggestion>[];
                                 results.add(Suggestion(
                                     googleId:

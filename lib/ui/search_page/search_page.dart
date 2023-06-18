@@ -105,7 +105,7 @@ class SearchPage extends StatelessWidget {
                         elevation: 4.0,
                       ),
                       suggestionsCallback: (input) async {
-                        if (input.toLowerCase() == 'mid valley') {
+                        if (input.toLowerCase() == 'cititel') {
                           final results = <Suggestion>[];
                           results.add(Suggestion(
                               googleId: '0x31cc498ea887c2d7:0x90dfd956df69d7ba',
