@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:impact_hack/ui/home_page/home_page.dart';
+import 'package:impact_hack/ui/home_page/home_page_state.dart';
 import 'package:impact_hack/ui/search_page/search_page_state.dart';
 import 'package:provider/provider.dart';
 
@@ -25,14 +27,28 @@ class SearchPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0, // Remove the shadow
+          toolbarHeight: 70,
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          title: Text("Back to Home",
-              style: Theme.of(context).textTheme.titleMedium),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 60,
+                child: Image.asset(
+                  'assets/images/lemons-logo.png',
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ],
+          ),
+          // title: Text("Back to Home",
+          //     style: Theme.of(context).textTheme.titleMedium),
         ),
         backgroundColor: Color.fromARGB(255, 214, 184, 191),
         body: Padding(

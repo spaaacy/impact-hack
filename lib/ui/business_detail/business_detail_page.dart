@@ -31,12 +31,16 @@ class BusinessDetailPage extends StatelessWidget {
           },
         ),
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("Back to Search Page",
-                style: Theme.of(context).textTheme.titleMedium),
-            Spacer(),
-            Text("Business Analysis Page",
-                style: Theme.of(context).textTheme.titleMedium),
+            Container(
+              height: 60,
+              child: Image.asset(
+                'assets/images/lemons-logo.png',
+                fit: BoxFit.fill,
+              ),
+            ),
             Spacer(),
 
             ElevatedButton.icon(
