@@ -37,7 +37,7 @@ class BusinessDetailPage extends StatelessWidget {
             Container(
               height: 60,
               child: Image.asset(
-                'assets/images/lemons-logo.png',
+                'assets/images/logo.png',
                 fit: BoxFit.fill,
               ),
             ),

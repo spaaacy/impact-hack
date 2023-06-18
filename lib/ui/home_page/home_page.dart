@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
                   Container(
                     height: 60,
                     child: Image.asset(
-                      'assets/images/lemons-logo.png',
+                      'assets/images/logo.png',
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -318,32 +318,6 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Expanded(
-                  //     child: Container(
-                  //   width: double.infinity,
-                  //   child: Column(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     crossAxisAlignment: CrossAxisAlignment.center,
-                  //     children: [
-                  //       Container(
-                  //         width: MediaQuery.of(context).size.width / 3,
-                  //         height: MediaQuery.of(context).size.height / 1.2,
-                  //         decoration: BoxDecoration(
-                  //           shape: BoxShape.circle,
-                  //           color: Colors.transparent,
-                  //           // borderRadius:
-                  //           //     BorderRadius.all(Radius.circular(12.0)),
-                  //           image: DecorationImage(
-                  //             fit: BoxFit.fitHeight,
-                  //             image: Image.asset(
-                  //               'assets/images/skyline-detailed.png',
-                  //             ).image,
-                  //           ),
-                  //         ),
-                  //       )
-                  //     ],
-                  //   ),
-                  // ))
                 ],
               ),
             ),
