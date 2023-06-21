@@ -1,16 +1,2 @@
-import 'package:latlong2/latlong.dart';
-
-const String mapsApiKey = "AIzaSyDgjWPTfYPcEWLtHQMF9Sy0yr68EtSD63w";
-const String rapidApiKey = "bdc59b040cmsh090a406a33dbd3fp127abfjsn659652f910c6";
-const String sampleBusinessName = "Business Name";
-const String loremImpsum = """
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id cursus augue, sit amet feugiat ligula. In tincidunt lacus at maximus vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus tristique ut augue in suscipit. Phasellus odio nibh, eleifend in nulla non, tincidunt facilisis dui. Aliquam scelerisque urna elementum, aliquet dolor sed, mollis purus. Phasellus sagittis lectus sit amet nisl venenatis, id cursus felis lacinia. Curabitur interdum ut odio non molestie. Vivamus pharetra, eros eu ultricies egestas, erat mi tempor ex, eget egestas neque mi vulputate sem. In finibus rutrum nisi sit amet pellentesque. Phasellus est tellus, sagittis ultricies egestas sed, blandit ac neque. Pellentesque fermentum blandit urna. Nam ornare, metus at aliquam lacinia, odio lectus laoreet libero, ac blandit urna mauris id magna. Pellentesque vel nisi tristique, fringilla lacus sit amet, ullamcorper nibh. Phasellus a massa tristique, tempor neque eu, venenatis libero.
-
-In elementum fringilla quam, sed mollis lorem volutpat vel. Aliquam at nibh volutpat, vehicula mauris eget, tempor tortor. Integer ut ipsum faucibus lorem efficitur tempor quis eu arcu. Praesent id lorem lobortis, iaculis turpis et, pretium orci. Duis quis nisl neque. Aliquam tincidunt diam et massa mattis sodales. Suspendisse suscipit magna id sem tempor, interdum malesuada arcu lobortis. Sed ultrices ligula sed luctus maximus. Nullam eu iaculis sem. Fusce consequat, dolor a rhoncus mollis, nunc justo eleifend libero, vitae condimentum massa sem a metus. Etiam ut lorem mauris.
-
-Aenean a leo hendrerit, egestas massa sit amet, venenatis ipsum. Aliquam non suscipit lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Aliquam suscipit malesuada tellus vitae faucibus. Proin aliquet feugiat sollicitudin. Nullam semper porta tortor eu fermentum. Donec laoreet eget augue eleifend maximus. Donec vel rhoncus erat. Maecenas vel commodo elit.
-
-Vestibulum id nunc ac est iaculis elementum ut vitae dui. Maecenas commodo massa id ante imperdiet, pellentesque ultrices nibh consectetur. Etiam aliquam efficitur libero. Vestibulum molestie nisi eu maximus tincidunt. Pellentesque et odio nisl. Pellentesque varius quam purus, id commodo felis pretium in. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus dolor ipsum, consequat eu interdum in, sodales vitae erat. Sed lobortis non urna ac euismod. Curabitur dapibus dapibus lorem in congue. Praesent in nulla sed purus fringilla mollis. In rutrum dolor eget mauris condimentum lacinia. Nam commodo quam magna, posuere sollicitudin neque rutrum nec. Duis sodales tempor est congue convallis. In gravida id felis eu faucibus.
-
-Fusce quis rutrum lectus. Curabitur vel porta lorem. Cras ornare et mi aliquet semper. Duis ultrices massa vitae purus dictum, at dictum velit aliquet. Cras cursus in augue in congue. Aliquam nunc odio, maximus scelerisque est ornare, luctus condimentum nunc. Fusce vel felis tempus, pharetra nulla et, fermentum arcu. Aenean at augue augue. Pellentesque eu dictum enim. In consectetur lacinia quam, nec pretium nulla fringilla eget. Aliquam eleifend venenatis mi, facilisis finibus massa sodales vitae. Aenean sit amet nunc vitae nisl suscipit pellentesque.
-    """;
+const String rapidApiKey = "";
+const String openAiApiKey = "";

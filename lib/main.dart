@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Insight IQ',
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFFFFA07A),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

@@ -4,12 +4,11 @@ import 'package:http/http.dart' as http;
 
 import '../data/model/chatgpt_request.dart';
 import '../data/model/chatgpt_response.dart';
+import '../util/constants.dart';
 
 class OpenAIService {
   static const String apiEndpoint =
       'https://api.openai.com/v1/chat/completions';
-  static const String apiKey =
-      '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';
 
   Future<ChatCompletionResponse> sendChatCompletionRequest(
       List<ChatMessage> messages, double temperature) async {
@@ -24,7 +23,7 @@ class OpenAIService {
     final response = await http.post(
       Uri.parse(apiEndpoint),
       headers: {
-        'Authorization': 'Bearer $apiKey',
+        'Authorization': 'Bearer $openAiApiKey',
         'Content-Type': 'application/json',
       },
       body: requestBody,
