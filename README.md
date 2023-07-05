@@ -1,4 +1,4 @@
-# InsightIQ: An ImpactHack 2023 Solution by Team Lemonade
+# InsightIQ: An ImpactHack 2023 Solution by Team Lemonade 🍋
 
 Uses the ChatGPT API and publicly available Google Reviews of hotels to analyze a hotels positive and negative aspects, and areas of improvement. Features location analysis, monthly analysis, competitor analysis, and individual hotel analysis. Developed using Flutter.
 
